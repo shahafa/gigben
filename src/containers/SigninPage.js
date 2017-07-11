@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { resetAuthState, login, signup, verify } from 'actions/authActions';
-import Login from 'components/SignIn/Login';
-import Signup from 'components/SignIn/Signup';
-import Verify from 'components/SignIn/Verify';
+import Login from 'components/signin/Login';
+import Signup from 'components/signin/Signup';
+import Verify from 'components/signin/Verify';
 import Temp from 'components/Temp';
 
 const LOGIN_MODE = 'LOGIN';

@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 import validator from 'validator';
 import { CircularProgress } from 'material-ui/Progress';
 import { grey, red } from 'material-ui/colors';
-import Container from 'components/shared/Container';
-import Text from 'components/shared/Text';
-import Link from 'components/shared/Link';
-import Input from 'components/shared/Input';
-import Spacer from 'components/shared/Spacer';
-import HoverableLink from 'components/shared/HoverableLink';
-import Button from 'components/shared/Button';
+import Container from 'components/common/Container';
+import Text from 'components/common/Text';
+import Link from 'components/common/Link';
+import Input from 'components/common/Input';
+import Spacer from 'components/common/Spacer';
+import HoverableLink from 'components/common/HoverableLink';
+import Button from 'components/common/Button';
 import SigninShell from './SigninShell';
 
 class Login extends Component {

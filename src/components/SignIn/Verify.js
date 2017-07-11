@@ -5,9 +5,9 @@ import { withStyles, createStyleSheet } from 'material-ui/styles';
 import { CircularProgress } from 'material-ui/Progress';
 import Input from 'material-ui/Input';
 import { red } from 'material-ui/colors';
-import Text from 'components/shared/Text';
-import Spacer from 'components/shared/Spacer';
-import Button from 'components/shared/Button';
+import Text from 'components/common/Text';
+import Spacer from 'components/common/Spacer';
+import Button from 'components/common/Button';
 import SigninShell from './SigninShell';
 
 const styleSheet = createStyleSheet('Input', () => ({

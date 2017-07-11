@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { apiMiddleware } from 'redux-api-middleware';
 import persistState from 'redux-localstorage';
 import rootReducer from 'reducers';
-import DevTools from 'components/DevTools';
+import DevTools from 'components/common/DevTools';
 
 const enhancer = compose(
   applyMiddleware(apiMiddleware),

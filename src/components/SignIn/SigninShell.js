@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Page from 'components/shared/Page';
-import Container from 'components/shared/Container';
-import Logo from 'components/shared/Logo';
+import Page from 'components/common/Page';
+import Container from 'components/common/Container';
+import Logo from 'components/common/Logo';
 
 const SignInShell = ({ children }) => (
   <Page directionColumn>

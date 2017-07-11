@@ -3,7 +3,7 @@ import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import createPalette from 'material-ui/styles/palette';
 import { lightBlue } from 'material-ui/colors';
-import DevTools from 'components/DevTools';
+import DevTools from 'components/common/DevTools';
 import Temp from 'components/Temp';
 import SigninPage from 'containers/SigninPage';
 
