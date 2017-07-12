@@ -4,8 +4,10 @@ import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import createPalette from 'material-ui/styles/palette';
 import { lightBlue } from 'material-ui/colors';
 import DevTools from 'components/common/DevTools';
-import Temp from 'components/Temp';
-import SigninPage from 'containers/SigninPage';
+import LoginPage from './LoginPage';
+import SignupPage from './SignupPage';
+import VerifyPage from './VerifyPage';
+import Temp from '../components/Temp';
 
 const theme = createMuiTheme({
   palette: createPalette({
@@ -19,7 +21,10 @@ const App = () => (
       <div>
         <Switch>
           <Route exact path="/" component={Temp} />
-          <Route path="/signin" component={SigninPage} />
+          <Route path="/login" component={LoginPage} />
+          <Route path="/signup" component={SignupPage} />
+          <Route path="/verify" component={VerifyPage} />
+          <Route exact path="/temp" component={Temp} />
         </Switch>
 
         {process.env.NODE_ENV === 'development' && <DevTools />}

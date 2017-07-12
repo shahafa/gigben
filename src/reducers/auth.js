@@ -2,16 +2,16 @@ import jwtDecode from 'jwt-decode';
 import * as types from 'actions/actionTypes';
 
 const initialState = {
-  isAuthenticating: false,
-  isSigningUp: false,
-  isVerifying: false,
   token: null,
-  isAuthenticated: false,
   user: {
     id: null,
     email: '',
     verified: false,
   },
+  isAuthenticated: false,
+  isAuthenticating: false,
+  isSigningUp: false,
+  isVerifying: false,
   errorCode: null,
   errorText: '',
 };
@@ -20,6 +20,11 @@ const auth = (state = initialState, action) => {
   switch (action.type) {
     case types.RESET_AUTH_STATE:
       return Object.assign({}, initialState);
+    case types.CLEAR_ERROR:
+      return Object.assign({}, state, {
+        errorCode: null,
+        errorText: '',
+      });
     case types.LOGIN_REQUEST:
       return Object.assign({}, state, {
         isAuthenticating: true,

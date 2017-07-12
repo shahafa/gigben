@@ -6,6 +6,10 @@ export const resetAuthState = () => ({
   type: types.RESET_AUTH_STATE,
 });
 
+export const clearError = () => ({
+  type: types.CLEAR_ERROR,
+});
+
 export const login = (email, password) => ({
   [RSAA]: {
     endpoint: '/v1/login',

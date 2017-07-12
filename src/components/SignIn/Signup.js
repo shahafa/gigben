@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import validator from 'validator';
 import { CircularProgress } from 'material-ui/Progress';
 import { red } from 'material-ui/colors';
 import Container from 'components/common/Container';
@@ -11,208 +10,134 @@ import Spacer from 'components/common/Spacer';
 import Button from 'components/common/Button';
 import SigninShell from './SigninShell';
 
-class Signup extends Component {
-  static propTypes = {
-    isSigningUp: PropTypes.bool.isRequired,
-    errorText: PropTypes.string.isRequired,
-    onSignupClick: PropTypes.func.isRequired,
-    onLoginClick: PropTypes.func.isRequired,
-  }
+const Signup = ({
+  onLoginClick,
+  email,
+  emailError,
+  onEmailChange,
+  onEmailBlur,
+  password,
+  passwordError,
+  onPasswordChange,
+  onPasswordBlur,
+  passwordConfirm,
+  passwordConfirmError,
+  onPasswordConfirmChange,
+  onPasswordConfirmBlur,
+  errorText,
+  isSigningUp,
+  onSignupClick,
+}) => (
+  <SigninShell>
+    <Text
+      size="56px"
+      weight="200"
+      align="center"
+    >
+      Sign Up
+    </Text>
 
-  state = {
-    email: '',
-    password: '',
-    passwordConfirm: '',
-    emailErrorText: '',
-    passwordErrorText: '',
-    passwordConfirmErrorText: '',
-  }
+    <Container marginTop="20px">
+      <Text
+        align="center"
+        size="20px"
+        weight="300"
+      >
+        Already have an account?
+      </Text>
 
-  validateEmail = () => {
-    const { email } = this.state;
+      <Spacer horizontal="7px" />
 
-    if (validator.isEmpty(email)) {
-      this.setState({ emailErrorText: 'Email field is required' });
-    } else if (!validator.isEmail(email)) {
-      this.setState({ emailErrorText: 'Email address is not valid' });
-    } else {
-      this.setState({ emailErrorText: '' });
-      return true;
+      <Link
+        size="20px"
+        weight="300"
+        onClick={onLoginClick}
+      >
+        Log In
+      </Link>
+    </Container>
+
+    <Container
+      directionColumn
+      width="360px"
+      margin="30px 0 45px 0"
+    >
+      <Input
+        label="Email"
+        value={email}
+        error={emailError}
+        onChange={event => onEmailChange(event.target.value)}
+        onBlur={onEmailBlur}
+        onKeyPress={(event) => { if (event.key === 'Enter') onSignupClick(); }}
+      />
+
+      <Spacer vertical="12px" />
+
+      <Input
+        label="Password"
+        type="password"
+        value={password}
+        error={passwordError}
+        onChange={event => onPasswordChange(event.target.value)}
+        onBlur={onPasswordBlur}
+        onKeyPress={(event) => { if (event.key === 'Enter') onSignupClick(); }}
+      />
+
+      <Spacer vertical="12px" />
+
+      <Input
+        label="Type your password again"
+        type="password"
+        value={passwordConfirm}
+        error={passwordConfirmError}
+        onChange={event => onPasswordConfirmChange(event.target.value)}
+        onBlur={onPasswordConfirmBlur}
+        onKeyPress={(event) => { if (event.key === 'Enter') onSignupClick(); }}
+      />
+    </Container>
+
+    <Text
+      align="center"
+      size="16px"
+      height="16px"
+      weight="300"
+      color={red[500]}
+    >
+      {errorText}
+    </Text>
+
+    <Spacer vertical="35px" />
+
+    {isSigningUp ?
+      <CircularProgress size={43} />
+    :
+      <Button onClick={onSignupClick}>
+        Sign Up
+      </Button>
     }
 
-    return false;
-  };
+    <Spacer vertical="10px" />
+  </SigninShell>
 
-  validatePassword = () => {
-    const { password } = this.state;
+);
 
-    if (validator.isEmpty(password)) {
-      this.setState({ passwordErrorText: 'Password field is required' });
-    } else if (!validator.isLength(password, { min: 8 })) {
-      this.setState({ passwordErrorText: 'Password must be at least 8 characters long' });
-    } else {
-      this.setState({ passwordErrorText: '' });
-      return true;
-    }
-
-    return false;
-  }
-
-  validatePasswordConfirm = () => {
-    const { password, passwordConfirm } = this.state;
-
-    if (validator.isEmpty(password)) {
-      this.setState({ passwordConfirmErrorText: 'Password confirmation field is required' });
-    } else if (password !== passwordConfirm) {
-      this.setState({ passwordConfirmErrorText: 'Passwords don\'t match.' });
-    } else {
-      this.setState({ passwordConfirmErrorText: '' });
-      return true;
-    }
-
-    return false;
-  }
-
-  handleEnterKeyClick = (event) => {
-    if (event.key === 'Enter') {
-      this.handleSignupClick();
-    }
-  }
-
-  handleSignupClick = () => {
-    const { onSignupClick } = this.props;
-    const { email, password } = this.state;
-
-    if (this.validateEmail() && this.validatePassword() && this.validatePasswordConfirm()) {
-      onSignupClick(email, password);
-    }
-  }
-
-  errorText = () => {
-    const { emailErrorText, passwordErrorText, passwordConfirmErrorText } = this.state;
-    const { errorText } = this.props;
-
-    if (emailErrorText !== '') {
-      return emailErrorText;
-    } else if (passwordErrorText !== '') {
-      return passwordErrorText;
-    } else if (passwordConfirmErrorText !== '') {
-      return passwordConfirmErrorText;
-    } else if (errorText !== '') {
-      return errorText;
-    }
-
-    return '';
-  }
-
-  render() {
-    const {
-      email,
-      password,
-      passwordConfirm,
-      emailErrorText,
-      passwordErrorText,
-      passwordConfirmErrorText,
-    } = this.state;
-
-    const {
-      isSigningUp,
-      onLoginClick,
-    } = this.props;
-
-    return (
-      <SigninShell>
-        <Text
-          size="56px"
-          weight="200"
-          align="center"
-        >
-          Sign Up
-        </Text>
-
-        <Container marginTop="20px">
-          <Text
-            align="center"
-            size="20px"
-            weight="300"
-          >
-            Already have an account?
-          </Text>
-
-          <Spacer horizontal="7px" />
-
-          <Link
-            size="20px"
-            weight="300"
-            onClick={onLoginClick}
-          >
-            Log In
-          </Link>
-        </Container>
-
-        <Container
-          directionColumn
-          width="360px"
-          margin="30px 0 45px 0"
-        >
-          <Input
-            label="Email"
-            value={email}
-            onChange={event => this.setState({ email: event.target.value })}
-            onBlur={() => this.setState({ emailErrorText: '' })}
-            onKeyPress={this.handleEnterKeyClick}
-            error={emailErrorText !== ''}
-          />
-
-          <Spacer vertical="12px" />
-
-          <Input
-            label="Password"
-            type="password"
-            value={password}
-            onChange={event => this.setState({ password: event.target.value })}
-            onBlur={() => this.setState({ passwordErrorText: '' })}
-            onKeyPress={this.handleEnterKeyClick}
-            error={passwordErrorText !== ''}
-          />
-
-          <Spacer vertical="12px" />
-
-          <Input
-            label="Type your password again"
-            type="password"
-            value={passwordConfirm}
-            onChange={event => this.setState({ passwordConfirm: event.target.value })}
-            onBlur={() => this.setState({ passwordConfirmErrorText: '' })}
-            onKeyPress={this.handleEnterKeyClick}
-            error={passwordConfirmErrorText !== ''}
-          />
-        </Container>
-
-        <Text
-          align="center"
-          size="16px"
-          height="16px"
-          weight="300"
-          color={red[500]}
-        >
-          {this.errorText()}
-        </Text>
-
-        <Spacer vertical="35px" />
-
-        {isSigningUp ?
-          <CircularProgress size={43} />
-        :
-          <Button onClick={this.handleSignupClick}>
-            Sign Up
-          </Button>
-        }
-
-        <Spacer vertical="10px" />
-      </SigninShell>
-    );
-  }
-}
+Signup.propTypes = {
+  onLoginClick: PropTypes.func.isRequired,
+  email: PropTypes.string.isRequired,
+  emailError: PropTypes.bool.isRequired,
+  onEmailChange: PropTypes.func.isRequired,
+  onEmailBlur: PropTypes.func.isRequired,
+  password: PropTypes.string.isRequired,
+  passwordError: PropTypes.bool.isRequired,
+  onPasswordChange: PropTypes.func.isRequired,
+  onPasswordBlur: PropTypes.func.isRequired,
+  passwordConfirm: PropTypes.string.isRequired,
+  passwordConfirmError: PropTypes.bool.isRequired,
+  onPasswordConfirmChange: PropTypes.func.isRequired,
+  onPasswordConfirmBlur: PropTypes.func.isRequired,
+  errorText: PropTypes.string.isRequired,
+  isSigningUp: PropTypes.bool.isRequired,
+  onSignupClick: PropTypes.func.isRequired,
+};
 
 export default Signup;
