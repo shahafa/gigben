@@ -70,7 +70,7 @@ class LoginPage extends Component {
     } = this.state;
 
     if (isAuthenticated && isVerified) {
-      return <Redirect to={{ pathname: '/temp' }} />;
+      return <Redirect to={{ pathname: '/onboarding' }} />;
     } else if (isAuthenticated && !isVerified) {
       return <Redirect to={{ pathname: '/verify' }} />;
     }

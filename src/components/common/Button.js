@@ -6,8 +6,8 @@ const Button = styled.span`
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 168px;
-    height: 43px;
+    ${props => (props.width ? `width: ${props.width}` : 'width: 168px;')};
+    ${props => (props.height ? `height: ${props.height}` : 'height: 43px;')};
     color: ${lightBlue[500]};
     box-shadow: inset 0 0 0 1px ${lightBlue[500]};
     cursor: pointer;
