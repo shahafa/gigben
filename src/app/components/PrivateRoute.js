@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
-import { isTokenExpired } from 'utils/jwtHelper';
+import { isTokenExpired } from '../utils/jwtHelper';
 
 const PrivateRoute = ({
   token,
@@ -23,7 +23,7 @@ const PrivateRoute = ({
 );
 
 PrivateRoute.propTypes = {
-  token: PropTypes.string,
+  token: PropTypes.string.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
   component: PropTypes.oneOfType([
     PropTypes.node,
@@ -32,8 +32,8 @@ PrivateRoute.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  token: state.auth.token,
-  isAuthenticated: state.auth.isAuthenticated,
+  token: state.signin.token,
+  isAuthenticated: state.signin.isAuthenticated,
 });
 
 export default connect(mapStateToProps)(PrivateRoute);

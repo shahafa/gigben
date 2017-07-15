@@ -1,16 +1,14 @@
 import jwtDecode from 'jwt-decode';
-import * as types from 'actions/actionTypes';
+import * as types from '../actions';
 
 const initialState = {
+  id: null,
+  email: '',
   token: null,
-  user: {
-    id: null,
-    email: '',
-    verified: false,
-  },
   isAuthenticated: false,
   isAuthenticating: false,
-  isSigningUp: false,
+  isSigningup: false,
+  isVerified: false,
   isVerifying: false,
   errorCode: null,
   errorText: '',
@@ -18,9 +16,7 @@ const initialState = {
 
 const auth = (state = initialState, action) => {
   switch (action.type) {
-    case types.RESET_AUTH_STATE:
-      return Object.assign({}, initialState);
-    case types.CLEAR_ERROR:
+    case types.SIGNIN_CLEAR_ERROR:
       return Object.assign({}, state, {
         errorCode: null,
         errorText: '',
@@ -31,23 +27,27 @@ const auth = (state = initialState, action) => {
       });
     case types.LOGIN_SUCCESS:
       return Object.assign({}, state, {
-        isAuthenticating: false,
-        isAuthenticated: true,
+        id: jwtDecode(action.payload.token).user.id,
+        email: jwtDecode(action.payload.token).user.email,
         token: action.payload.token,
-        user: jwtDecode(action.payload.token).user,
+        isAuthenticated: true,
+        isAuthenticating: false,
+        isVerified: jwtDecode(action.payload.token).user.verified,
         errorCode: null,
         errorText: '',
       });
     case types.SIGNUP_REQUEST:
       return Object.assign({}, state, {
-        isSigningUp: true,
+        isSigningup: true,
       });
     case types.SIGNUP_SUCCESS:
       return Object.assign({}, state, {
-        isSigningUp: false,
+        id: jwtDecode(action.payload.token).user.id,
+        email: jwtDecode(action.payload.token).user.email,
+        token: action.payload.token,
         isAuthenticated: true,
-        jwtToken: action.payload.token,
-        user: jwtDecode(action.payload.token).user,
+        isSigningup: false,
+        isVerified: jwtDecode(action.payload.token).user.verified,
         errorCode: null,
         errorText: '',
       });
@@ -57,9 +57,11 @@ const auth = (state = initialState, action) => {
       });
     case types.VERIFY_SUCCESS:
       return Object.assign({}, state, {
-        isVerifying: false,
+        id: jwtDecode(action.payload.token).user.id,
+        email: jwtDecode(action.payload.token).user.email,
         token: action.payload.token,
-        user: jwtDecode(action.payload.token).user,
+        isVerified: jwtDecode(action.payload.token).user.email,
+        isVerifying: false,
         errorCode: null,
         errorText: '',
       });

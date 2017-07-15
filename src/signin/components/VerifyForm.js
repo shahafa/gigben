@@ -1,31 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
 import { CircularProgress } from 'material-ui/Progress';
-import Input from 'material-ui/Input';
 import { red } from 'material-ui/colors';
-import Text from 'components/common/Text';
-import Spacer from 'components/common/Spacer';
-import Button from 'components/common/Button';
-import SigninShell from './SigninShell';
+import { Container, Spacer, Text, Button, InputCenterAligned } from 'common/components';
 
-const styleSheet = createStyleSheet('Input', () => ({
-  input: {
-    textAlign: 'center',
-  },
-}));
-
-const Verify = ({
+const VerifyForm = ({
   userEmail,
   code,
   onCodeChange,
   onCodeBlur,
   errorText,
-  classes,
   isVerifying,
   onVerifyClick,
 }) => (
-  <SigninShell>
+  <Container directionColumn justifyContentCenter alignItemsCenter stretch>
     <Text
       size="56px"
       weight="200"
@@ -46,10 +34,7 @@ const Verify = ({
 
     <Spacer vertical="75px" />
 
-    <Input
-      classes={{
-        input: classes.input,
-      }}
+    <InputCenterAligned
       autoFocus
       placeholder="XXXXXX"
       value={code}
@@ -82,19 +67,18 @@ const Verify = ({
     }
 
     <Spacer vertical="10px" />
-  </SigninShell>
+  </Container>
 
 );
 
-Verify.propTypes = {
+VerifyForm.propTypes = {
   userEmail: PropTypes.string.isRequired,
   code: PropTypes.string.isRequired,
   onCodeChange: PropTypes.func.isRequired,
   onCodeBlur: PropTypes.func.isRequired,
   errorText: PropTypes.string.isRequired,
-  classes: PropTypes.object.isRequired,
   isVerifying: PropTypes.bool.isRequired,
   onVerifyClick: PropTypes.func.isRequired,
 };
 
-export default withStyles(styleSheet)(Verify);
+export default VerifyForm;

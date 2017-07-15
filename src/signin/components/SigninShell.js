@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Page from 'components/common/Page';
-import Container from 'components/common/Container';
-import Logo from 'components/common/Logo2';
+import { Page, Container, Logo } from 'common/components';
 
 const SignInShell = ({ children }) => (
   <Page directionColumn>
@@ -10,9 +8,7 @@ const SignInShell = ({ children }) => (
       <Logo size="42px" />
     </Container>
 
-    <Container directionColumn justifyContentCenter alignItemsCenter stretch>
-      {children}
-    </Container>
+    {children}
   </Page>
 );
 

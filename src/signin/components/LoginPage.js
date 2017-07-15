@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import validator from 'validator';
-import { login, clearError } from 'actions/authActions';
-import Login from 'components/signin/Login';
+import { login, clearError } from '../actions';
+import SigninShell from './SigninShell';
+import LoginForm from './LoginForm';
 
 class LoginPage extends Component {
   static propTypes = {
@@ -76,30 +77,32 @@ class LoginPage extends Component {
     }
 
     return (
-      <Login
-        onSignupClick={() => history.push('/signup')}
-        email={email}
-        emailError={emailError !== ''}
-        onEmailChange={value => this.setState({ email: value })}
-        onEmailBlur={() => this.setState({ emailError: '' })}
-        password={password}
-        passwordError={passwordError !== ''}
-        onPasswordChange={value => this.setState({ password: value })}
-        onPasswordBlur={() => this.setState({ passwordError: '' })}
-        onForgotPasswordClick={() => history.push('/login')}
-        errorText={emailError || passwordError || serverErrorText}
-        isAuthenticating={isAuthenticating}
-        onLoginClick={this.handleLoginClick}
-      />
+      <SigninShell>
+        <LoginForm
+          onSignupClick={() => history.push('/signup')}
+          email={email}
+          emailError={emailError !== ''}
+          onEmailChange={value => this.setState({ email: value })}
+          onEmailBlur={() => this.setState({ emailError: '' })}
+          password={password}
+          passwordError={passwordError !== ''}
+          onPasswordChange={value => this.setState({ password: value })}
+          onPasswordBlur={() => this.setState({ passwordError: '' })}
+          onForgotPasswordClick={() => history.push('/login')}
+          errorText={emailError || passwordError || serverErrorText}
+          isAuthenticating={isAuthenticating}
+          onLoginClick={this.handleLoginClick}
+        />
+      </SigninShell>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated,
-  isAuthenticating: state.auth.isAuthenticating,
-  isVerified: state.auth.user.verified,
-  serverErrorText: state.auth.errorText,
+  isAuthenticated: state.signin.isAuthenticated,
+  isAuthenticating: state.signin.isAuthenticating,
+  isVerified: state.signin.isVerified,
+  serverErrorText: state.signin.errorText,
 });
 
 export default connect(mapStateToProps)(LoginPage);

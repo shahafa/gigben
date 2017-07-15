@@ -3,14 +3,11 @@ import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import createPalette from 'material-ui/styles/palette';
 import { lightBlue } from 'material-ui/colors';
-import DevTools from 'components/common/DevTools';
+import { DevTools } from 'common/components';
+import { HomePage } from 'home';
+import { LoginPage, SignupPage, VerifyPage } from 'signin';
+import { OnboardingPage } from 'onboarding';
 import PrivateRoute from './PrivateRoute';
-import HomePage from './HomePage';
-import LoginPage from './LoginPage';
-import SignupPage from './SignupPage';
-import VerifyPage from './VerifyPage';
-import OnboardingPage from './OnboardingPage/OnboardingPage';
-import Temp from '../components/Temp';
 
 const theme = createMuiTheme({
   palette: createPalette({

@@ -1,11 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Page from 'components/common/Page';
-import Container from 'components/common/Container';
-import Logo from 'components/common/Logo2';
-import Spacer from 'components/common/Spacer';
-import Text from 'components/common/Text';
-import Button from 'components/common/Button';
+import { Page, Container, Logo, Spacer, Text, Button } from 'common/components';
 
 const HomePage = ({
   history,
@@ -33,7 +28,7 @@ const HomePage = ({
         Innovative payment platform enabling workers in the gig economy secure their future.
       </Text>
 
-      <Spacer vertical="10px" />
+      <Spacer vertical="30px" />
     </Container>
   </Page>
 );

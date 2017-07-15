@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import validator from 'validator';
-import { signup, clearError } from 'actions/authActions';
-import Signup from 'components/signin/Signup';
+import { signup, clearError } from '../actions';
+import SigninShell from './SigninShell';
+import SignupForm from './SignupForm';
 
 class SignupPage extends Component {
   static propTypes = {
@@ -12,7 +13,7 @@ class SignupPage extends Component {
     history: PropTypes.object.isRequired,
     isAuthenticated: PropTypes.bool.isRequired,
     isVerified: PropTypes.bool.isRequired,
-    isSigningUp: PropTypes.bool.isRequired,
+    isSigningup: PropTypes.bool.isRequired,
     serverErrorText: PropTypes.string.isRequired,
   }
 
@@ -66,7 +67,7 @@ class SignupPage extends Component {
       history,
       isAuthenticated,
       isVerified,
-      isSigningUp,
+      isSigningup,
       serverErrorText,
     } = this.props;
 
@@ -84,34 +85,36 @@ class SignupPage extends Component {
     }
 
     return (
-      <Signup
-        onLoginClick={() => history.push('/login')}
-        email={email}
-        emailError={emailError !== ''}
-        onEmailChange={value => this.setState({ email: value })}
-        onEmailBlur={() => this.setState({ emailError: '' })}
-        password={password}
-        passwordError={passwordError !== ''}
-        onPasswordChange={value => this.setState({ password: value })}
-        onPasswordBlur={() => this.setState({ passwordError: '' })}
-        passwordConfirm={passwordConfirm}
-        passwordConfirmError={passwordConfirmError !== ''}
-        onPasswordConfirmChange={value => this.setState({ passwordConfirm: value })}
-        onPasswordConfirmBlur={() => this.setState({ passwordConfirmError: '' })}
-        onEnterPress={this.handleSignupClick}
-        errorText={emailError || passwordError || passwordConfirmError || serverErrorText}
-        isSigningUp={isSigningUp}
-        onSignupClick={this.handleSignupClick}
-      />
+      <SigninShell>
+        <SignupForm
+          onLoginClick={() => history.push('/login')}
+          email={email}
+          emailError={emailError !== ''}
+          onEmailChange={value => this.setState({ email: value })}
+          onEmailBlur={() => this.setState({ emailError: '' })}
+          password={password}
+          passwordError={passwordError !== ''}
+          onPasswordChange={value => this.setState({ password: value })}
+          onPasswordBlur={() => this.setState({ passwordError: '' })}
+          passwordConfirm={passwordConfirm}
+          passwordConfirmError={passwordConfirmError !== ''}
+          onPasswordConfirmChange={value => this.setState({ passwordConfirm: value })}
+          onPasswordConfirmBlur={() => this.setState({ passwordConfirmError: '' })}
+          onEnterPress={this.handleSignupClick}
+          errorText={emailError || passwordError || passwordConfirmError || serverErrorText}
+          isSigningup={isSigningup}
+          onSignupClick={this.handleSignupClick}
+        />
+      </SigninShell>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated,
-  isVerified: state.auth.user.verified,
-  isSigningUp: state.auth.isSigningUp,
-  serverErrorText: state.auth.errorText,
+  isAuthenticated: state.signin.isAuthenticated,
+  isSigningup: state.signin.isSigningup,
+  isVerified: state.signin.isVerified,
+  serverErrorText: state.signin.errorText,
 });
 
 export default connect(mapStateToProps)(SignupPage);

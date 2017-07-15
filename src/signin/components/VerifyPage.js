@@ -3,13 +3,15 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import validator from 'validator';
-import { verify, clearError } from 'actions/authActions';
-import Verify from 'components/signin/Verify';
+import { verify, clearError } from '../actions';
+import SigninShell from './SigninShell';
+import VerifyForm from './VerifyForm';
 
 class VerifyPage extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
-    user: PropTypes.object.isRequired,
+    userId: PropTypes.string.isRequired,
+    userEmail: PropTypes.string.isRequired,
     isAuthenticated: PropTypes.bool.isRequired,
     isVerified: PropTypes.bool.isRequired,
     isVerifying: PropTypes.bool.isRequired,
@@ -27,7 +29,7 @@ class VerifyPage extends Component {
   }
 
   handleVerifyClick = () => {
-    const { dispatch, user } = this.props;
+    const { dispatch, userId } = this.props;
     const { code } = this.state;
 
     let codeError = '';
@@ -35,7 +37,7 @@ class VerifyPage extends Component {
     if (validator.isEmpty(code)) {
       codeError = 'Code field is required';
     } else {
-      dispatch(verify(user.email, code));
+      dispatch(verify(userId, code));
     }
 
     this.setState({
@@ -45,7 +47,7 @@ class VerifyPage extends Component {
 
   render() {
     const {
-      user,
+      userEmail,
       isAuthenticated,
       isVerified,
       isVerifying,
@@ -64,26 +66,29 @@ class VerifyPage extends Component {
     }
 
     return (
-      <Verify
-        userEmail={user.email}
-        code={code}
-        codeError={codeError !== ''}
-        onCodeChange={value => this.setState({ code: value })}
-        onCodeBlur={() => this.setState({ codeError: '' })}
-        errorText={codeError || serverErrorText}
-        isVerifying={isVerifying}
-        onVerifyClick={this.handleVerifyClick}
-      />
+      <SigninShell>
+        <VerifyForm
+          userEmail={userEmail}
+          code={code}
+          codeError={codeError !== ''}
+          onCodeChange={value => this.setState({ code: value })}
+          onCodeBlur={() => this.setState({ codeError: '' })}
+          errorText={codeError || serverErrorText}
+          isVerifying={isVerifying}
+          onVerifyClick={this.handleVerifyClick}
+        />
+      </SigninShell>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  user: state.auth.user,
-  isAuthenticated: state.auth.isAuthenticated,
-  isVerified: state.auth.user.verified,
-  isVerifying: state.auth.isVerifying,
-  serverErrorText: state.auth.errorText,
+  userId: state.signin.id,
+  userEmail: state.signin.email,
+  isAuthenticated: state.signin.isAuthenticated,
+  isVerified: state.signin.isVerified,
+  isVerifying: state.signin.isVerifying,
+  serverErrorText: state.signin.errorText,
 });
 
 export default connect(mapStateToProps)(VerifyPage);

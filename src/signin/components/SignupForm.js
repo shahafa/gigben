@@ -2,15 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { CircularProgress } from 'material-ui/Progress';
 import { red } from 'material-ui/colors';
-import Container from 'components/common/Container';
-import Text from 'components/common/Text';
-import Link from 'components/common/Link';
-import Input from 'components/common/Input';
-import Spacer from 'components/common/Spacer';
-import Button from 'components/common/Button';
-import SigninShell from './SigninShell';
+import { Container, Spacer, Text, Button, Link, Input } from 'common/components';
 
-const Signup = ({
+const SignupForm = ({
   onLoginClick,
   email,
   emailError,
@@ -25,10 +19,10 @@ const Signup = ({
   onPasswordConfirmChange,
   onPasswordConfirmBlur,
   errorText,
-  isSigningUp,
+  isSigningup,
   onSignupClick,
 }) => (
-  <SigninShell>
+  <Container directionColumn justifyContentCenter alignItemsCenter stretch>
     <Text
       size="56px"
       weight="200"
@@ -63,6 +57,7 @@ const Signup = ({
       margin="30px 0 45px 0"
     >
       <Input
+        autoFocus
         label="Email"
         value={email}
         error={emailError}
@@ -108,7 +103,7 @@ const Signup = ({
 
     <Spacer vertical="35px" />
 
-    {isSigningUp ?
+    {isSigningup ?
       <CircularProgress size={43} />
     :
       <Button onClick={onSignupClick}>
@@ -117,11 +112,11 @@ const Signup = ({
     }
 
     <Spacer vertical="10px" />
-  </SigninShell>
+  </Container>
 
 );
 
-Signup.propTypes = {
+SignupForm.propTypes = {
   onLoginClick: PropTypes.func.isRequired,
   email: PropTypes.string.isRequired,
   emailError: PropTypes.bool.isRequired,
@@ -136,8 +131,8 @@ Signup.propTypes = {
   onPasswordConfirmChange: PropTypes.func.isRequired,
   onPasswordConfirmBlur: PropTypes.func.isRequired,
   errorText: PropTypes.string.isRequired,
-  isSigningUp: PropTypes.bool.isRequired,
+  isSigningup: PropTypes.bool.isRequired,
   onSignupClick: PropTypes.func.isRequired,
 };
 
-export default Signup;
+export default SignupForm;

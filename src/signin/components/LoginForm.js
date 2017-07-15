@@ -2,16 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { CircularProgress } from 'material-ui/Progress';
 import { grey, red } from 'material-ui/colors';
-import Container from 'components/common/Container';
-import Text from 'components/common/Text';
-import Link from 'components/common/Link';
-import Input from 'components/common/Input';
-import Spacer from 'components/common/Spacer';
-import HoverableLink from 'components/common/HoverableLink';
-import Button from 'components/common/Button';
-import SigninShell from './SigninShell';
+import { Container, Spacer, Text, Button, Link, Input, HoverableLink } from 'common/components';
 
-const Login = ({
+const LoginForm = ({
   onSignupClick,
   email,
   emailError,
@@ -26,7 +19,7 @@ const Login = ({
   isAuthenticating,
   onLoginClick,
 }) => (
-  <SigninShell>
+  <Container directionColumn justifyContentCenter alignItemsCenter stretch>
     <Text
       size="56px"
       weight="200"
@@ -61,6 +54,7 @@ const Login = ({
       margin="30px 0 30px 0"
     >
       <Input
+        autoFocus
         label="Email"
         value={email}
         error={emailError}
@@ -114,10 +108,10 @@ const Login = ({
     }
 
     <Spacer vertical="10px" />
-  </SigninShell>
+  </Container>
 );
 
-Login.propTypes = {
+LoginForm.propTypes = {
   onSignupClick: PropTypes.func.isRequired,
   email: PropTypes.string.isRequired,
   emailError: PropTypes.bool.isRequired,
@@ -133,4 +127,4 @@ Login.propTypes = {
   onLoginClick: PropTypes.func.isRequired,
 };
 
-export default Login;
+export default LoginForm;

@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import store from 'store';
-import App from 'containers/App';
+import store from 'common/store';
+import { App } from 'app';
 
 ReactDOM.render(
   <Provider store={store}>
@@ -13,7 +13,7 @@ ReactDOM.render(
 
 // HMR
 if (module.hot) {
-  module.hot.accept('containers/App', () => {
+  module.hot.accept('app', () => {
     ReactDOM.render(
       <Provider store={store}>
         <App />
