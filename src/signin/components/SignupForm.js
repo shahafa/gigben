@@ -23,39 +23,23 @@ const SignupForm = ({
   onSignupClick,
 }) => (
   <Container directionColumn justifyContentCenter alignItemsCenter stretch>
-    <Text
-      size="56px"
-      weight="200"
-      align="center"
-    >
+    <Text size="56px" weight="200" align="center">
       Sign Up
     </Text>
 
     <Container marginTop="20px">
-      <Text
-        align="center"
-        size="20px"
-        weight="300"
-      >
+      <Text size="20px" weight="300" align="center">
         Already have an account?
       </Text>
 
       <Spacer horizontal="7px" />
 
-      <Link
-        size="20px"
-        weight="300"
-        onClick={onLoginClick}
-      >
+      <Link size="20px" weight="300" onClick={onLoginClick}>
         Log In
       </Link>
     </Container>
 
-    <Container
-      directionColumn
-      width="360px"
-      margin="30px 0 45px 0"
-    >
+    <Container directionColumn width="360px" margin="30px 0 45px 0">
       <Input
         autoFocus
         label="Email"
@@ -91,13 +75,7 @@ const SignupForm = ({
       />
     </Container>
 
-    <Text
-      align="center"
-      size="16px"
-      height="16px"
-      weight="300"
-      color={red[500]}
-    >
+    <Text size="16px" height="16px" weight="300" color={red[500]} align="center">
       {errorText}
     </Text>
 
@@ -113,7 +91,6 @@ const SignupForm = ({
 
     <Spacer vertical="10px" />
   </Container>
-
 );
 
 SignupForm.propTypes = {

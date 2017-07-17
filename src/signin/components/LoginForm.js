@@ -20,39 +20,23 @@ const LoginForm = ({
   onLoginClick,
 }) => (
   <Container directionColumn justifyContentCenter alignItemsCenter stretch>
-    <Text
-      size="56px"
-      weight="200"
-      align="center"
-    >
+    <Text size="56px" weight="200" align="center">
       Log In
     </Text>
 
     <Container marginTop="20px">
-      <Text
-        align="center"
-        size="20px"
-        weight="300"
-      >
+      <Text align="center" size="20px" weight="300">
         New to Gigben?
       </Text>
 
       <Spacer horizontal="7px" />
 
-      <Link
-        size="20px"
-        weight="300"
-        onClick={onSignupClick}
-      >
+      <Link size="20px" weight="300" onClick={onSignupClick}>
         Sign Up
       </Link>
     </Container>
 
-    <Container
-      directionColumn
-      width="360px"
-      margin="30px 0 30px 0"
-    >
+    <Container directionColumn width="360px" margin="30px 0 30px 0">
       <Input
         autoFocus
         label="Email"
@@ -77,23 +61,12 @@ const LoginForm = ({
 
       <Spacer vertical="12px" />
 
-      <HoverableLink
-        size="14px"
-        onClick={onForgotPasswordClick}
-        weight="100"
-        color={grey[600]}
-      >
+      <HoverableLink size="14px" weight="100" color={grey[600]} onClick={onForgotPasswordClick}>
         Forgot Password?
       </HoverableLink>
     </Container>
 
-    <Text
-      align="center"
-      size="16px"
-      height="16px"
-      weight="300"
-      color={red[500]}
-    >
+    <Text align="center" size="16px" height="16px" weight="300" color={red[500]}>
       {errorText}
     </Text>
 

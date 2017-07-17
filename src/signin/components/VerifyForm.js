@@ -14,21 +14,13 @@ const VerifyForm = ({
   onVerifyClick,
 }) => (
   <Container directionColumn justifyContentCenter alignItemsCenter stretch>
-    <Text
-      size="56px"
-      weight="200"
-      align="center"
-    >
+    <Text size="56px" weight="200" align="center">
       Verify Account
     </Text>
 
     <Spacer vertical="20px" />
 
-    <Text
-      align="center"
-      size="20px"
-      weight="300"
-    >
+    <Text size="20px" weight="300" align="center">
       {`Please enter the code that we sent to: ${userEmail}`}
     </Text>
 
@@ -68,7 +60,6 @@ const VerifyForm = ({
 
     <Spacer vertical="10px" />
   </Container>
-
 );
 
 VerifyForm.propTypes = {
