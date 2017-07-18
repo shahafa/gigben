@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import validator from 'validator';
+import { isTokenExpired } from 'common/utils/jwtHelper';
 import { signup, clearError } from '../actions';
 import SigninShell from './SigninShell';
 import SignupForm from './SignupForm';
@@ -11,6 +12,7 @@ class SignupPage extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
     history: PropTypes.object.isRequired,
+    token: PropTypes.string.isRequired,
     isAuthenticated: PropTypes.bool.isRequired,
     isVerified: PropTypes.bool.isRequired,
     isSigningup: PropTypes.bool.isRequired,
@@ -65,6 +67,7 @@ class SignupPage extends Component {
   render() {
     const {
       history,
+      token,
       isAuthenticated,
       isVerified,
       isSigningup,
@@ -80,7 +83,7 @@ class SignupPage extends Component {
       passwordConfirmError,
     } = this.state;
 
-    if (isAuthenticated && !isVerified) {
+    if (isAuthenticated && !isTokenExpired(token) && !isVerified) {
       return <Redirect to={{ pathname: '/verify' }} />;
     }
 
@@ -111,6 +114,7 @@ class SignupPage extends Component {
 }
 
 const mapStateToProps = state => ({
+  token: state.signin.token,
   isAuthenticated: state.signin.isAuthenticated,
   isSigningup: state.signin.isSigningup,
   isVerified: state.signin.isVerified,

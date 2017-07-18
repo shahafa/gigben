@@ -2,11 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Page, Container, Logo, Text, Spacer, Link, Button } from 'common/components';
 
-const OnboardingShell = ({
+const StepContainer = ({
   title,
   children,
   onBackClick,
   onNextClick,
+  hideBack,
 }) => (
   <Page directionColumn>
     <Container padding="20px 0 0 50px">
@@ -24,25 +25,35 @@ const OnboardingShell = ({
 
       <Spacer vertical="70px" />
 
-      <Container alignItemsCenter justifyContentSpaceBetween width="200px">
-        <Link weight="300" onClick={onBackClick}>{'< Back'}</Link>
+      <Container alignItemsCenter justifyContentSpaceBetween width={hideBack ? '110px' : '200px'}>
+        {!hideBack &&
+          <Link weight="300" onClick={onBackClick}>{'< Back'}</Link>
+        }
 
         <Button width="110px" onClick={onNextClick}>
           Next
         </Button>
       </Container>
+
+      <Spacer vertical="30px" />
     </Container>
   </Page>
 );
 
-OnboardingShell.propTypes = {
+StepContainer.propTypes = {
   title: PropTypes.string.isRequired,
-  onBackClick: PropTypes.func.isRequired,
+  onBackClick: PropTypes.func,
   onNextClick: PropTypes.func.isRequired,
+  hideBack: PropTypes.bool,
   children: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.func,
   ]).isRequired,
 };
 
-export default OnboardingShell;
+StepContainer.defaultProps = {
+  hideBack: false,
+  onBackClick: () => {},
+};
+
+export default StepContainer;

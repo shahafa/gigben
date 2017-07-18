@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import validator from 'validator';
+import { isTokenExpired } from 'common/utils/jwtHelper';
 import { verify, clearError } from '../actions';
 import SigninShell from './SigninShell';
 import VerifyForm from './VerifyForm';
@@ -10,6 +11,7 @@ import VerifyForm from './VerifyForm';
 class VerifyPage extends Component {
   static propTypes = {
     dispatch: PropTypes.func.isRequired,
+    token: PropTypes.string.isRequired,
     userId: PropTypes.string.isRequired,
     userEmail: PropTypes.string.isRequired,
     isAuthenticated: PropTypes.bool.isRequired,
@@ -47,6 +49,7 @@ class VerifyPage extends Component {
 
   render() {
     const {
+      token,
       userEmail,
       isAuthenticated,
       isVerified,
@@ -59,10 +62,8 @@ class VerifyPage extends Component {
       codeError,
     } = this.state;
 
-    if (isAuthenticated && isVerified) {
-      return <Redirect to={{ pathname: '/onboarding' }} />;
-    } else if (!isAuthenticated) {
-      return <Redirect to={{ pathname: '/login' }} />;
+    if (isAuthenticated && !isTokenExpired(token)) {
+      return <Redirect to={{ pathname: isVerified ? '/onboarding' : '/login' }} />;
     }
 
     return (
@@ -83,6 +84,7 @@ class VerifyPage extends Component {
 }
 
 const mapStateToProps = state => ({
+  token: state.signin.token,
   userId: state.signin.id,
   userEmail: state.signin.email,
   isAuthenticated: state.signin.isAuthenticated,

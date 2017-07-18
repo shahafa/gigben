@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
-import { isTokenExpired } from '../utils/jwtHelper';
+import { isTokenExpired } from 'common/utils/jwtHelper';
 
 const PrivateRoute = ({
   token,
