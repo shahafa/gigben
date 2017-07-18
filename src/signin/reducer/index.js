@@ -4,7 +4,7 @@ import * as types from '../actions';
 const initialState = {
   id: null,
   email: '',
-  token: null,
+  token: '',
   isAuthenticated: false,
   isAuthenticating: false,
   isSigningup: false,
