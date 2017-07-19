@@ -1,14 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import validator from 'validator';
-import BaseTextField from 'material-ui/TextField';
-import { textProps, sizeProps } from './propReceivers';
-
-const StyledTextField = styled(BaseTextField)`
-  ${textProps};
-  ${sizeProps};
-`;
 
 class TextField extends Component {
   static defaultProps = {
@@ -16,6 +8,8 @@ class TextField extends Component {
     value: '',
     onChange: null,
     onBlur: null,
+    onError: null,
+    error: false,
     hideErrorText: false,
     validateOnBlur: false,
     notEmpty: false,
@@ -28,6 +22,8 @@ class TextField extends Component {
     value: PropTypes.string,
     onChange: PropTypes.func,
     onBlur: PropTypes.func,
+    onError: PropTypes.func,
+    error: PropTypes.bool,
     hideErrorText: PropTypes.bool,
     validateOnBlur: PropTypes.bool,
     notEmpty: PropTypes.bool,
@@ -66,6 +62,7 @@ class TextField extends Component {
       notEmpty,
       isEmail,
       minLength,
+      onError,
     } = this.props;
 
     let errorText = '';
@@ -82,6 +79,10 @@ class TextField extends Component {
       isValid: errorText === '',
       errorText,
     });
+
+    if (onError) {
+      onError(errorText);
+    }
 
     return errorText === '';
   }
@@ -111,13 +112,21 @@ class TextField extends Component {
       errorText,
     } = this.state;
 
-    const { hideErrorText, validateOnBlur, notEmpty, isEmail, minLength, ...rest } = this.props;
+    const {
+      error,
+      hideErrorText,
+      validateOnBlur,
+      notEmpty,
+      isEmail,
+      minLength,
+      ...rest
+    } = this.props;
 
     return (
-      <StyledTextField
+      <TextField
         {...rest}
         value={value}
-        error={!isValid}
+        error={error || !isValid}
         helperText={hideErrorText ? '' : errorText}
         onChange={this.handleChange}
         onBlur={this.handleBlur}

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, InputCenterAligned } from 'common/components';
+import { Container, Input } from 'common/components';
 import StepContainer from './StepContainer';
 
 const Step3 = ({
@@ -15,7 +15,8 @@ const Step3 = ({
     onBackClick={onBackClick}
   >
     <Container directionColumn width="360px">
-      <InputCenterAligned
+      <Input
+        textAlignCenter
         autoFocus
         placeholder="XXX - XX - XXXX"
         value={getUserValue('socialSecurityNumber')}

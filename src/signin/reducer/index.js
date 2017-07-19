@@ -60,7 +60,7 @@ const auth = (state = initialState, action) => {
         id: jwtDecode(action.payload.token).user.id,
         email: jwtDecode(action.payload.token).user.email,
         token: action.payload.token,
-        isVerified: jwtDecode(action.payload.token).user.email,
+        isVerified: jwtDecode(action.payload.token).user.verified,
         isVerifying: false,
         errorCode: null,
         errorText: '',

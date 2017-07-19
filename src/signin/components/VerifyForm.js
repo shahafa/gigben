@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { CircularProgress } from 'material-ui/Progress';
 import { red } from 'material-ui/colors';
-import { Container, Spacer, Text, Button, InputCenterAligned } from 'common/components';
+import { Container, Spacer, Text, Button, Input } from 'common/components';
 
 const VerifyForm = ({
   userEmail,
@@ -26,7 +26,8 @@ const VerifyForm = ({
 
     <Spacer vertical="75px" />
 
-    <InputCenterAligned
+    <Input
+      textAlignCenter
       autoFocus
       placeholder="XXXXXX"
       value={code}

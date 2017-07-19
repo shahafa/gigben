@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import TextField from 'material-ui/TextField';
 import { CircularProgress } from 'material-ui/Progress';
 import { grey, red } from 'material-ui/colors';
-import { Container, Spacer, Text, Button, Link, Input, HoverableLink } from 'common/components';
+import { Container, Spacer, Text, Button, Link, HoverableLink } from 'common/components';
 
 const LoginForm = ({
   onSignupClick,
@@ -37,7 +38,7 @@ const LoginForm = ({
     </Container>
 
     <Container directionColumn width="360px" margin="30px 0 30px 0">
-      <Input
+      <TextField
         autoFocus
         label="Email"
         value={email}
@@ -49,7 +50,7 @@ const LoginForm = ({
 
       <Spacer vertical="12px" />
 
-      <Input
+      <TextField
         label="Password"
         type="password"
         value={password}
