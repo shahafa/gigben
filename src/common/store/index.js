@@ -6,7 +6,7 @@ import rootReducer from './reducers';
 
 const enhancer = compose(
   applyMiddleware(apiMiddleware),
-  process.env.NODE_ENV === 'production' ? persistState() : applyMiddleware(),
+  persistState(),
   process.env.NODE_ENV === 'development' ? DevTools.instrument() : applyMiddleware(),
 );
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Input, Spacer } from 'common/components';
+import TextField from 'material-ui/TextField';
+import { Container, Spacer } from 'common/components';
 import StepContainer from './StepContainer';
 
 const Step2 = ({
@@ -15,7 +16,7 @@ const Step2 = ({
     onBackClick={onBackClick}
   >
     <Container directionColumn width="360px">
-      <Input
+      <TextField
         autoFocus
         label="Street Address"
         value={getUserValue('streetAddress1')}
@@ -24,7 +25,7 @@ const Step2 = ({
 
       <Spacer vertical="12px" />
 
-      <Input
+      <TextField
         label="Apt. or Suite # (optional)"
         value={getUserValue('streetAddress2')}
         onChange={event => setUserValue('streetAddress2', event.target.value)}
@@ -32,7 +33,7 @@ const Step2 = ({
 
       <Spacer vertical="12px" />
 
-      <Input
+      <TextField
         label="City"
         value={getUserValue('city')}
         onChange={event => setUserValue('city', event.target.value)}
@@ -40,7 +41,7 @@ const Step2 = ({
 
       <Spacer vertical="12px" />
 
-      <Input
+      <TextField
         label="State"
         value={getUserValue('state')}
         onChange={event => setUserValue('state', event.target.value)}
@@ -48,7 +49,7 @@ const Step2 = ({
 
       <Spacer vertical="12px" />
 
-      <Input
+      <TextField
         label="ZIP Code"
         value={getUserValue('zipCode')}
         onChange={event => setUserValue('zipCode', event.target.value)}

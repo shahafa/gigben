@@ -8,4 +8,3 @@ export { default as Logo } from './Logo';
 export { default as Page } from './Page';
 export { default as Spacer } from './Spacer';
 export { default as Text } from './Text';
-export { default as TextField } from './TextField';

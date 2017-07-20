@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Input, Spacer } from 'common/components';
+import TextField from 'material-ui/TextField';
+import { Container, Spacer } from 'common/components';
 import StepContainer from './StepContainer';
 
 const Step1 = ({
@@ -14,7 +15,7 @@ const Step1 = ({
     hideBack
   >
     <Container directionColumn width="360px">
-      <Input
+      <TextField
         autoFocus
         label="First Name"
         value={getUserValue('firstName')}
@@ -23,7 +24,7 @@ const Step1 = ({
 
       <Spacer vertical="12px" />
 
-      <Input
+      <TextField
         label="Last Name"
         value={getUserValue('lastName')}
         onChange={event => setUserValue('lastName', event.target.value)}
@@ -31,7 +32,7 @@ const Step1 = ({
 
       <Spacer vertical="12px" />
 
-      <Input
+      <TextField
         label="Mobile Phone Number"
         value={getUserValue('phoneNumber')}
         onChange={event => setUserValue('phoneNumber', event.target.value)}
@@ -39,7 +40,7 @@ const Step1 = ({
 
       <Spacer vertical="12px" />
 
-      <Input
+      <TextField
         label="Country of Citizenship"
         value={getUserValue('citizenship')}
         onChange={event => setUserValue('citizenship', event.target.value)}
