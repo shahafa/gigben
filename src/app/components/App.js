@@ -8,6 +8,7 @@ import { HomePage } from 'home';
 import { LoginPage, SignupPage, VerifyPage } from 'signin';
 import { OnboardingPage } from 'onboarding';
 import PrivateRoute from './PrivateRoute';
+import './globalStyles';
 
 const theme = createMuiTheme({
   palette: createPalette({

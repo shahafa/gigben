@@ -6,23 +6,24 @@ const Button = styled.span`
     display: flex;
     align-items: center;
     justify-content: center;
-    ${props => (props.width ? `width: ${props.width}` : 'width: 168px;')};
-    ${props => (props.height ? `height: ${props.height}` : 'height: 43px;')};
-    color: ${lightBlue[500]};
-    box-shadow: inset 0 0 0 1px ${lightBlue[500]};
+    width: ${props => (props.width ? props.width : '168px')};
+    height: ${props => (props.height ? props.height : '43px')};
     cursor: pointer;
-    transition: background-color .3s,color .3s,background .3s,box-shadow .1s ease-in-out;
     border-radius: 999px;
+    font-family: 'Roboto';
     font-weight: 300;
     outline: none;
-
+    transition: background-color .3s,color .3s,background .3s,box-shadow .1s ease-in-out;
+    box-shadow: inset 0 0 0 1px ${props => (props.color ? props.color : lightBlue[500])};
+    color: ${props => (props.color ? props.color : lightBlue[500])};
+      
     &:hover {
-      color: white;
-      background-color: ${lightBlue[500]};
+      color: ${props => (props.hoverColor ? props.hoverColor : 'white')};
+      background-color: ${props => (props.hoverBackgroundColor ? props.hoverBackgroundColor : lightBlue[500])};
     }
 
     &:active {
-      background-color: ${lightBlue[700]};
+      background-color: ${props => (props.activeBackgroundColor ? props.activeBackgroundColor : lightBlue[700])};
     }
 `;
 

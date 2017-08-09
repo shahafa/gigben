@@ -1,5 +1,6 @@
 export const flexboxProps = props => `
   display: flex;
+  ${props.stretch && 'flex: 1'};
   ${props.directionRow && 'flex-direction: row'};
   ${props.directionRowReverse && 'flex-direction: row-reverse'};
   ${props.directionColumn && 'flex-direction: column'};
@@ -52,19 +53,28 @@ export const textProps = props => `
   ${props.size && `font-size: ${props.size}`};
   ${props.weight && `font-weight: ${props.weight}`};
   ${props.align && `text-align: ${props.align}`};
+  ${props.lineHeight && `line-height: ${props.lineHeight}`};
   ${props.color && `color: ${props.color}`};
 `;
 
 export const sizeProps = props => `
   ${props.width && `width: ${props.width}`};
+  ${props.minWidth && `min-width: ${props.minWidth}`};
+  ${props.maxWidth && `max-width: ${props.maxWidth}`};
   ${props.height && `height: ${props.height}`}; 
+  ${props.minHeight && `min-height: ${props.minHeight}`}; 
+  ${props.maxHeight && `max-height: ${props.maxHeight}`};   
 `;
 
 export const spacingProps = props => `
-  ${props.vertical && `
-    height: ${props.vertical};
-  `};
-  ${props.horizontal && `
-    width: ${props.horizontal};
-  `};
+  ${props.vertical && `height: ${props.vertical};`};
+  ${props.horizontal && `width: ${props.horizontal};`};
+`;
+
+export const backgroundProps = props => `
+  ${props.backgroundColor && `background-color: ${props.backgroundColor};`};
+  ${props.backgroundImage && `background-image: url(${props.backgroundImage});`};
+  ${props.backgroundRepeat && `background-repeat: ${props.backgroundRepeat};`};
+  ${props.backgroundPosition && `background-position: ${props.backgroundPosition};`};
+  ${props.backgroundSize && `background-size: ${props.backgroundSize};`};
 `;
