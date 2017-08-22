@@ -1,30 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
-import mortgage from './mortgage.svg';
-import search from './search.svg';
-import lightBulb from './light-bulb.svg';
-import contract from './contract.svg';
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding: 75px 15% 75px 15%;
-  background-color: #f8f8f8;
-`;
-
-const Title = styled.div`
-  display: flex;
-  justify-content: center;
-  font-family: Sacramento;
-  font-size: 7vh;
-  font-weight: 300;
-  margin: 0 0 40px 0;
-`;
+import Section from './Section';
+import analytics from '../assets/analytics.svg';
+import home from '../assets/home.svg';
+import idea from '../assets/idea.svg';
+import tax from '../assets/tax.svg';
 
 const Content = styled.div`
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
+  width: 100%;
+  margin-top: 2em;
 `;
 
 const Item = styled.div`
@@ -32,55 +19,59 @@ const Item = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 50px;
+
+  @media (max-width: 667px) {
+    margin-bottom: 65px;
+  }
 `;
 
 const ItemImage = styled.img`
-  width: 13vh;
+  width: 4em;
+  height: 4em;
   margin-bottom: 20px;
 `;
 
 const ItemText = styled.div`
   width: 25vh;
-  font-size: 2.2vh;
+  font-size: 1.1em;
+  font-weight: 300;
+  line-height: 1.7em;
   text-align: center;
   color: #4a4a4a;
 `;
 
 const HowItWorksSection = () => (
-  <Wrapper>
-    <Title>How it Works</Title>
-
+  <Section title="How it works" backgroundColor="#f8f8f8">
     <Content>
       <Item>
-        <ItemImage src={mortgage} />
+        <ItemImage src={home} />
         <ItemText>
-          Find and enroll retirement plan and health insurance
+          Find and enroll benefits including retirement and health insurance
         </ItemText>
       </Item>
 
       <Item>
-        <ItemImage src={search} />
+        <ItemImage src={analytics} />
         <ItemText>
-          Get comprehensive and easy-to-understand finiancial status
+          Get comprehensive and easy-to-understand finiancial visibility
         </ItemText>
       </Item>
 
       <Item>
-        <ItemImage src={lightBulb} />
+        <ItemImage src={idea} />
         <ItemText>
-          Get personalized actionable insights to improve your finicial future
+          Get personalized actionable insights to improve your financial future
         </ItemText>
       </Item>
 
       <Item>
-        <ItemImage src={contract} />
+        <ItemImage src={tax} />
         <ItemText>
-          Report expenses and approve auto generated tax report
+          Approve automatic tax withholding
         </ItemText>
       </Item>
     </Content>
-  </Wrapper>
+  </Section>
 );
 
 export default HowItWorksSection;

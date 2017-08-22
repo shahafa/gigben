@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles, createStyleSheet } from 'material-ui/styles';
+// import { withStyles, createStyleSheet } from 'material-ui/styles';
 import InputBase from 'material-ui/Input';
 
-const styleSheet = createStyleSheet('Input', () => ({
-  input: {
-    textAlign: 'center',
-  },
-}));
+// const styleSheet = createStyleSheet('Input', () => ({
+//   input: {
+//     textAlign: 'center',
+//   },
+// }));
 
 const Input = ({
   classes,
@@ -29,4 +29,5 @@ Input.propTypes = {
   textAlignCenter: PropTypes.bool,
 };
 
-export default withStyles(styleSheet)(Input);
+// export default withStyles(styleSheet)(Input);
+export default Input;

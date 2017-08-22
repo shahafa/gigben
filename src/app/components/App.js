@@ -1,5 +1,7 @@
 import React from 'react';
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import ReactGA from 'react-ga';
+import { HashRouter, Route, Switch } from 'react-router-dom';
+import createHistory from 'history/createBrowserHistory';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import createPalette from 'material-ui/styles/palette';
 import { lightBlue } from 'material-ui/colors';
@@ -16,9 +18,21 @@ const theme = createMuiTheme({
   }),
 });
 
+const logLocationToGoogleAnalytics = (location) => {
+  console.log('looging to GA');
+  ReactGA.set({ page: location.pathname + location.search });
+  ReactGA.pageview(location.pathname + location.search);
+};
+
+ReactGA.initialize('UA-105009613-1');
+
+const history = createHistory();
+logLocationToGoogleAnalytics(history.location);
+history.listen(location => logLocationToGoogleAnalytics(location));
+
 const App = () => (
-  <Router>
-    <MuiThemeProvider theme={theme}>
+  <MuiThemeProvider theme={theme}>
+    <HashRouter>
       <div>
         <Switch>
           <Route exact path="/" component={HomePage} />
@@ -30,8 +44,8 @@ const App = () => (
 
         {process.env.NODE_ENV === 'development' && <DevTools />}
       </div>
-    </MuiThemeProvider>
-  </Router>
+    </HashRouter>
+  </MuiThemeProvider>
 );
 
 export default App;

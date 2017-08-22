@@ -1,134 +1,82 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Logo, Spacer, ScrollIcon } from 'common/components';
-import background from './background.png';
+import { Logo } from 'common/components';
+import background from '../assets/background.png';
 
-const Wrapper = styled.div`
+const Main = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   height: 100vh;
-  max-height: 100vh;
-  min-height: 100vh;
-  padding: 0 15% 0 15%;
-  background-image: url(${background});
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  
-  @media (max-width: 667px) {
-    background-position-x: -950px;
-    height: 70vh;
+  z-index: 0;
+
+  &:before {
+    content: "";
+    height: 100%;
+    width: 100%;
+    background-image: url(${background});
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    z-index: -1;
+    position: absolute;
+
+    @media (max-width: 667px) {
+      background-position-x: -100px;
+    }       
   }
 `;
 
-const LogoSection = styled.div`
-  display: flex;
-  align-items: center;
-  height: 15%;
-
-  @media (max-width: 667px) {
-    justify-content: center;
-  }  
-`;
-
-const TextSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 45%;
-  
-  @media (max-width: 667px) {
-    align-items: center;
-    height: 85%;
-  }  
-`;
-
-const Title = styled.div`
-  font-size: 6.5vh;
+const H1 = styled.h1`
   font-weight: 100;
   color: white;
-
-  @media (max-width: 667px) {
-    font-weight: 300;
-    text-align: center;
-  }
 `;
 
-const Description = styled.div`
-  max-width: 40vw;
-  font-size: 3.5vh;
+const H2 = styled.h2`
+  width: 40vw;
   font-weight: 100;
-  line-height: 1.7;
-  color: white;
-
-  @media (max-width: 667px) {
-    text-align: center;
-    max-width: 100vw;
-    font-weight: 300;
-  }  
-
-  @media (max-width: 1280px) {
-    max-width: 55vw;
-  }  
-`;
-
-const JoinUsButton = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 2em;
-  width: 6em;
-  border-radius: 12px;
-  border: solid 1px #ffffff;
-  font-size: 2.5vh;
-  font-weight: 300;
   text-align: center;
-  color: #ffffff;
+  color: white;
+  line-height: 1.5em;
 
+  @media (max-width: 667px) {
+    width: 90vw;
+  }    
+`;
+
+const Button = styled.div`
+  margin-top: 40px;
+  border-radius: 40px;
+  color: white;
+  border: 2px solid white;
+  transition: all .2s ease-in-out;
+  font-weight: 300;
+  font-size: 1.2em;  
   cursor: pointer;
+  padding: 8px 30px;
 
-  @media (max-width: 667px) {
-    font-size: 3.5vh;
-  }    
+  &:hover {
+    color: black;
+    background-color: white;
+  }
 `;
 
-const ScrollDownSection = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  flex: 1;
-  padding-bottom: 30px;
-
-  @media (max-width: 667px) {
-    visibility: hidden;
-  }    
-`;
-
-const LandingSection = () => (
-  <Wrapper>
-    <LogoSection>
-      <Logo white size={64} />
-    </LogoSection>
-
-    <TextSection>
-      <Title>Securing your future</Title>
-
-      <Spacer vertical="5vh" />
-
-      <Description>
-        Gigben is a platform for gig economy workers to manage
-        payments, benefits, expenses and taxes.
-      </Description>
-
-      <Spacer vertical="5vh" />
-
-      <JoinUsButton>Join Us</JoinUsButton>
-    </TextSection>
-
-    <ScrollDownSection>
-      <ScrollIcon />
-    </ScrollDownSection>
-  </Wrapper>
+const LandingSection = ({ onJoinUsClick }) => (
+  <Main>
+    <Logo size="5em" color="white" />
+    <H1>Securing your future</H1>
+    <H2>
+      Gigben is a platform for gig economy workers to manage payments, benefits, expenses
+      and taxes.
+    </H2>
+    <Button onClick={onJoinUsClick}>Join Us</Button>
+  </Main>
 );
+
+LandingSection.propTypes = {
+  onJoinUsClick: PropTypes.func.isRequired,
+};
 
 export default LandingSection;

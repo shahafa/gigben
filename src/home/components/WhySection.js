@@ -1,72 +1,76 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
-import dashboard from './dashboard.png';
+import Lightbox from 'react-images';
+import Section from './Section';
+import dashboard from '../assets/dashboard.png';
 
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  margin: 75px 15% 75px 15%;
-`;
-
-const Title = styled.div`
-  display: flex;
-  justify-content: center;
-  font-family: Sacramento;
-  font-size: 7vh;
-  font-weight: 300;
-  margin: 0 0 40px 0;
-`;
-
-const Content = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-`;
-
-const Text = styled.div`
+const Text = styled.h3`
   flex: 1;
+  margin: 1.15em;  
   min-width: 275px; 
-  font-size: 3vh;
+  max-width: 450px;
   font-weight: 300;
   line-height: 1.4;
-  color: #4a4a4a;
-  margin-bottom: 15vh;
-  margin-right: 20px;
-
-  @media (max-width: 667px) {
-    margin: 0 0 50px 0;
-  }  
-`;
-
-const Screenshot = styled.div`
-  flex: 1;
-  min-width: 275px; 
-  margin: 15vh 0 0 20px;
-  box-shadow: 0 0 52px 0 rgba(0, 0, 0, 0.3);
+  color: #424242;
 
   @media (max-width: 667px) {
     margin: 0;
-  }
+  }    
 `;
 
-const WhySection = () => (
-  <Wrapper>
-    <Title>Why Gigben</Title>
+const ScreenshotContainer = styled.div`
+  flex: 1;
+  margin: 1.15em;  
+  min-width: 275px; 
+  max-width: 450px;
 
-    <Content>
-      <Text>
-        We understand that unlike a regular employee as a gig economy worker, you need to take care 
-        of your finicial future and it takes time and requires specialties.
-        <br /><br />
-        This is why we built Gigben, with Gigben you can manage payaments from diffrenet platforms, 
-        benefits, expenses and tax reports in one place and in easy way like a pro!
-      </Text>
+  @media (max-width: 667px) {
+    margin: 0.2em;
+  }    
+`;
 
-      <Screenshot>
-        <img src={dashboard} alt="" style={{ width: '100%', height: '100%' }} />
-      </Screenshot>
-    </Content>
-  </Wrapper>
-);
+const Screenshot = styled.img`
+  width: 100%;
+  margin-top: 7em;
+  box-shadow: 0 0 52px 0 rgba(0, 0, 0, 0.3);
+  cursor: zoom-in;
+
+  @media (max-width: 667px) {
+    margin-top: 2.5em;
+  }  
+`;
+
+class WhySection extends Component {
+  state = {
+    lightBoxOpen: false,
+  }
+
+  render() {
+    const { lightBoxOpen } = this.state;
+
+    return (
+      <Section title="Why Gigben">
+        <Text>
+          We understand that unlike a regular employee as a gig economy worker, you need to take
+          care of your financial future and it takes time and requires specialties.
+          <br /><br />
+          This is why we built Gigben, with Gigben you can manage payaments from diffrenet
+          platforms, benefits, expenses and tax reports in one place and in easy way like a pro!
+        </Text>
+
+        <ScreenshotContainer>
+          <Screenshot src={dashboard} onClick={() => this.setState({ lightBoxOpen: true })} />
+
+          <Lightbox
+            images={[{ src: dashboard }]}
+            isOpen={lightBoxOpen}
+            onClose={() => this.setState({ lightBoxOpen: false })}
+            showImageCount={false}
+          />
+        </ScreenshotContainer>
+      </Section>
+    );
+  }
+}
 
 export default WhySection;

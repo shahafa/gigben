@@ -1,59 +1,101 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import email from './email.svg';
+import Section from './Section';
 
 const Wrapper = styled.div`
   display: flex;
-  flex-direction: column;
-  padding: 75px 15% 75px 15%;
-  background-color: white;
-`;
-
-const Title = styled.div`
-  display: flex;
+  width: 100%;
   justify-content: center;
-  font-family: Sacramento;
-  font-size: 7vh;
-  font-weight: 300;
-  margin: 0 0 40px 0;
-  text-align: center;
-`;
-
-const Content = styled.div`
-  display: flex;
-  justify-content: center;
+  margin-top: 0.2em;
 `;
 
 const Input = styled.input`
-  height: 30px;
-  width: 20vw;
-  border: solid 1px #979797;
+  flex: 1;
+  height: 35px;
+  max-width: 250px;
+  border: solid 1px #424242;
   font-size: 14px;
-  background: url(${email}) no-repeat scroll 5px;
-  background-size: 1.5vw 1.5vw;
-  padding-left: 2.5vw;  
+  padding-left: 10px;  
 `;
 
 const Button = styled.div`
-  width: 7vw;
-  height: 34px;
-  line-height: 34px;
+  height: 35px;
+  padding: 0 20px 0 20px;
+  line-height: 35px;
   text-align: center;
-  background-color: black;
+  background-color: #424242;
   color: white;
-  font-size: 14px;
+  font-size: 0.9em;
+  font-weight: 300;
   cursor: pointer;
 `;
 
-const GetEarlyAccessSection = () => (
-  <Wrapper>
-    <Title>Get Early Access</Title>
+const Text = styled.div`
+  text-align: center;
+  font-size: 1em;
+  color: #424242;
+`;
 
-    <Content>
-      <Input />
-      <Button>Join Us</Button>
-    </Content>
-  </Wrapper>
-);
+class GetEarlyAccessSection extends Component {
+  static propTypes = {
+    htmlRef: PropTypes.func,
+    focusEmailInput: PropTypes.bool,
+  }
+
+  static defaultProps = {
+    htmlRef: null,
+    focusEmailInput: false,
+  };
+
+  state = {
+    email: '',
+    signedUp: false,
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.focusEmailInput && this.emailInput) {
+      this.emailInput.focus();
+    }
+  }
+
+  handleJoinUsClick = () => {
+    const { email } = this.state;
+
+    fetch('/v1/addEarlyAccessUser/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email }),
+    });
+
+    this.setState({ signedUp: true });
+  }
+
+  render() {
+    const { htmlRef } = this.props;
+    const { email, signedUp } = this.state;
+
+    return (
+      <Section htmlRef={htmlRef} title="Get early access">
+        {!signedUp ?
+          <Wrapper>
+            <Input
+              placeholder="Email"
+              innerRef={(emailInput) => { this.emailInput = emailInput; }}
+              value={email}
+              onChange={event => this.setState({ email: event.target.value })}
+            />
+            <Button onClick={this.handleJoinUsClick}>Join Us</Button>
+          </Wrapper> :
+          <Wrapper>
+            <Text>{'Thanks for signing up for early access, we\'ll contact you soon with more details'}</Text>
+          </Wrapper>
+        }
+      </Section>
+    );
+  }
+}
 
 export default GetEarlyAccessSection;
