@@ -15,12 +15,12 @@ const Content = styled.div`
 `;
 
 const Item = styled.div`
-  flex: 1;
+  flex: 1 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  @media (max-width: 667px) {
+  @media (max-width: 1024px) {
     margin-bottom: 65px;
   }
 `;

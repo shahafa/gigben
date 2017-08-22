@@ -22,9 +22,10 @@ const Main = styled.div`
     background-size: cover;
     z-index: -1;
     position: absolute;
-
+    top: 0;
+    
     @media (max-width: 667px) {
-      background-position-x: -100px;
+      background-position-x: -150px;
     }       
   }
 `;
@@ -32,6 +33,10 @@ const Main = styled.div`
 const H1 = styled.h1`
   font-weight: 100;
   color: white;
+
+  @media (max-width: 667px) {
+    font-weight: 300;
+  }
 `;
 
 const H2 = styled.h2`
@@ -43,6 +48,7 @@ const H2 = styled.h2`
 
   @media (max-width: 667px) {
     width: 90vw;
+    font-weight: 300;    
   }    
 `;
 
@@ -56,6 +62,10 @@ const Button = styled.div`
   font-size: 1.2em;  
   cursor: pointer;
   padding: 8px 30px;
+
+  @media (max-width: 667px) {
+    visibility: hidden;
+  }
 
   &:hover {
     color: black;

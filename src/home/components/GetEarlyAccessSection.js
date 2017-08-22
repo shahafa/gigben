@@ -17,11 +17,12 @@ const Input = styled.input`
   border: solid 1px #424242;
   font-size: 14px;
   padding-left: 10px;  
+  border-radius: 0px;
 `;
 
 const Button = styled.div`
   height: 35px;
-  padding: 0 20px 0 20px;
+  padding: 0 15px 0 15px;
   line-height: 35px;
   text-align: center;
   background-color: #424242;
@@ -29,6 +30,7 @@ const Button = styled.div`
   font-size: 0.9em;
   font-weight: 300;
   cursor: pointer;
+  margin-left: 4px;
 `;
 
 const Text = styled.div`
