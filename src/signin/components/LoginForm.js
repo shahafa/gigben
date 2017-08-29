@@ -75,7 +75,7 @@ const LoginForm = ({
 
     {isAuthenticating ?
       <CircularProgress size={43} />
-    :
+      :
       <Button onClick={onLoginClick}>
         Log In
       </Button>

@@ -5,6 +5,7 @@
   "dependencies": {
     "chart.js": "^2.6.0",
     "history": "^4.6.3",
+    "humanize-plus": "^1.8.2",
     "js-base64": "^2.1.9",
     "jwt-decode": "^2.2.0",
     "lodash": "^4.17.4",
@@ -17,6 +18,7 @@
     "react-chartjs-2": "^2.5.1",
     "react-dom": "^15.6.1",
     "react-ga": "^2.2.0",
+    "react-icons": "^2.2.5",
     "react-images": "^0.5.5",
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.2",
