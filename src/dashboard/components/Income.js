@@ -10,7 +10,10 @@ const chartOptions = {
     position: 'right',
   },
   scales: {
-    xAxes: [{ stacked: true }],
+    xAxes: [{
+      stacked: true,
+      barPercentage: 0.2,
+    }],
     yAxes: [{ stacked: true }],
   },
 };

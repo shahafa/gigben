@@ -20,27 +20,27 @@ const Row = styled.div`
 `;
 
 const Cell = styled.div`
-  ${props => props.flexGrow && `flex: ${props.flexGrow}`};  
+  ${props => props.span && `flex: ${props.span}`};  
 `;
 
 const Overview = () => (
   <Wrapper>
     <Row>
-      <Cell flexGrow={3}>
+      <Cell span={3}>
         <Income data={incomeByPlatformData} />
       </Cell>
 
-      <Cell flexGrow={1}>
+      <Cell span={1}>
         <NetPay />
       </Cell>
     </Row>
 
     <Row>
-      <Cell flexGrow={3}>
+      <Cell span={3}>
         <Deductions />
       </Cell>
 
-      <Cell flexGrow={1}>
+      <Cell span={1}>
         <TopExpenses />
       </Cell>
     </Row>
