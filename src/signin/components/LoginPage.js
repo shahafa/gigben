@@ -74,7 +74,7 @@ class LoginPage extends Component {
     } = this.state;
 
     if (isAuthenticated && !isTokenExpired(token)) {
-      return <Redirect to={{ pathname: isVerified ? '/onboarding' : '/verify' }} />;
+      return <Redirect to={{ pathname: isVerified ? '/dashboard' : '/verify' }} />;
     }
 
     return (

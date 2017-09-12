@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PlaidLink from 'react-plaid-link';
 
-class Plaid extends Component {
+class PlaidDevelopment extends Component {
   state = {
     publicKey: '',
   }
@@ -15,8 +15,8 @@ class Plaid extends Component {
       <div style={{ padding: 30 }}>
         <PlaidLink
           publicKey="77d1e73a10adb6ec5098f5b097308b"
-          product="Auth, Transactions, Income"
-          env="sandbox"
+          product="auth, transactions, income"
+          env="development"
           clientName="gigben"
           onSuccess={this.handleOnSuccess}
         />
@@ -27,4 +27,4 @@ class Plaid extends Component {
   }
 }
 
-export default Plaid;
+export default PlaidDevelopment;

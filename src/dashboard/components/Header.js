@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Humanize from 'humanize-plus';
-import { Logo } from 'common/components2';
+import { Logo } from 'common/components';
 import HeaderItem from './HeaderItem';
 
 const Wrapper = styled.div`

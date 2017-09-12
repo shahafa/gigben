@@ -9,7 +9,7 @@ import { HomePage } from 'home';
 import { LoginPage, SignupPage, VerifyPage } from 'signin';
 import { OnboardingPage } from 'onboarding';
 import { Dashboard } from 'dashboard';
-import { Plaid } from 'plaid';
+import { Plaid, PlaidDevelopment } from 'plaid';
 import { logRoutesToGoogleAnalytics } from './googleAnalyticsLogger';
 import PrivateRoute from './PrivateRoute';
 import './globalStyles';
@@ -34,7 +34,9 @@ const App = () => (
             <Route path="/verify" component={VerifyPage} />
             <Route path="/dashboard" component={Dashboard} />
             <PrivateRoute path="/onboarding" component={OnboardingPage} />
-            <Route path="/moshe" component={Plaid} />
+
+            <Route path="/plaid" component={Plaid} />
+            <Route path="/plaid-development" component={PlaidDevelopment} />
           </Switch>
 
           {process.env.NODE_ENV === 'development' && <DevTools />}
