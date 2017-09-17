@@ -1,7 +1,8 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import store from 'common/store';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import store, { history } from 'common/store';
+import { Route, Switch } from 'react-router-dom';
+import { ConnectedRouter } from 'react-router-redux';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import { lightBlue } from 'material-ui/colors';
 import { DevTools } from 'common/components';
@@ -25,7 +26,7 @@ logRoutesToGoogleAnalytics();
 const App = () => (
   <Provider store={store}>
     <MuiThemeProvider theme={theme}>
-      <HashRouter>
+      <ConnectedRouter history={history}>
         <div>
           <Switch>
             <Route exact path="/" component={HomePage} />
@@ -41,7 +42,7 @@ const App = () => (
 
           {process.env.NODE_ENV === 'development' && <DevTools />}
         </div>
-      </HashRouter>
+      </ConnectedRouter>
     </MuiThemeProvider>
   </Provider>
 );

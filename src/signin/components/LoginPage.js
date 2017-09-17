@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import validator from 'validator';
 import { isTokenExpired } from 'common/utils/jwtHelper';
-import { login, clearError } from '../actions';
+import { login, resetUserState } from '../actions';
 import SigninShell from './SigninShell';
 import LoginForm from './LoginForm';
 
@@ -28,7 +28,7 @@ class LoginPage extends Component {
 
   componentDidMount() {
     const { dispatch } = this.props;
-    dispatch(clearError());
+    dispatch(resetUserState());
   }
 
   handleLoginClick = () => {

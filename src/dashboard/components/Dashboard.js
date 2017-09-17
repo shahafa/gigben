@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
+import { logout } from 'signin/actions';
 import Header from './Header';
 import Overview from './Overview';
 
@@ -9,17 +12,31 @@ const Wrapper = styled.div`
   background-color: #eff5f9;  
 `;
 
-const Dashboard = () => (
-  <Wrapper>
-    <Header
-      bankBalance={1234}
-      creditCards={345}
-      loans={18900}
-      investments={27000}
-      retiermentBalance={13245}
-    />
-    <Overview />
-  </Wrapper>
-);
+class Dashboard extends Component {
+  handleLogoutClick = () => {
+    this.props.logout();
+  }
 
-export default Dashboard;
+  render() {
+    return (
+      <Wrapper>
+        <Header
+          onLogoutClick={this.handleLogoutClick}
+          bankBalance={1234}
+          creditCards={345}
+          loans={18900}
+          investments={27000}
+          retiermentBalance={13245}
+        />
+
+        <Overview />
+      </Wrapper>
+    );
+  }
+}
+
+Dashboard.propTypes = {
+  logout: PropTypes.func.isRequired,
+};
+
+export default connect(null, { logout })(Dashboard);

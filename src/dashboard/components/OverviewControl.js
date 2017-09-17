@@ -22,7 +22,7 @@ const TitleText = styled.div`
 
 
 const Content = styled.div`
-  flex: 1;
+  height: 220px;
 `;
 
 const OverviewControl = ({

@@ -16,68 +16,90 @@ const initialState = {
 
 const auth = (state = initialState, action) => {
   switch (action.type) {
+    case types.RESET_USER_STATE:
+      return {
+        ...initialState,
+      };
     case types.SIGNIN_CLEAR_ERROR:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         errorCode: null,
         errorText: '',
-      });
-    case types.LOGIN_REQUEST:
-      return Object.assign({}, state, {
+      };
+    case types.LOGIN:
+      return {
+        ...state,
         isAuthenticating: true,
-      });
-    case types.LOGIN_SUCCESS:
-      return Object.assign({}, state, {
-        id: jwtDecode(action.payload.token).user.id,
-        email: jwtDecode(action.payload.token).user.email,
-        token: action.payload.token,
+      };
+    case types.LOGIN_SUCCESS: {
+      const decodedToken = jwtDecode(action.token);
+      return {
+        ...state,
+        id: decodedToken.user.id,
+        email: decodedToken.user.email,
+        token: action.token,
         isAuthenticated: true,
         isAuthenticating: false,
-        isVerified: jwtDecode(action.payload.token).user.verified,
+        isVerified: decodedToken.user.verified,
         errorCode: null,
         errorText: '',
-      });
-    case types.SIGNUP_REQUEST:
-      return Object.assign({}, state, {
+      };
+    }
+    case types.SIGNUP:
+      return {
+        ...state,
         isSigningup: true,
-      });
-    case types.SIGNUP_SUCCESS:
-      return Object.assign({}, state, {
-        id: jwtDecode(action.payload.token).user.id,
-        email: jwtDecode(action.payload.token).user.email,
-        token: action.payload.token,
+      };
+    case types.SIGNUP_SUCCESS: {
+      const decodedToken = jwtDecode(action.token);
+      return {
+        ...state,
+        id: decodedToken.user.id,
+        email: decodedToken.user.email,
+        token: action.token,
         isAuthenticated: true,
         isSigningup: false,
-        isVerified: jwtDecode(action.payload.token).user.verified,
+        isVerified: decodedToken.user.verified,
         errorCode: null,
         errorText: '',
-      });
-    case types.VERIFY_REQUEST:
-      return Object.assign({}, state, {
+      };
+    }
+    case types.VERIFY:
+      return {
+        ...state,
         isVerifying: true,
-      });
-    case types.VERIFY_SUCCESS:
-      return Object.assign({}, state, {
-        id: jwtDecode(action.payload.token).user.id,
-        email: jwtDecode(action.payload.token).user.email,
-        token: action.payload.token,
-        isVerified: jwtDecode(action.payload.token).user.verified,
+      };
+    case types.VERIFY_SUCCESS: {
+      const decodedToken = jwtDecode(action.token);
+      return {
+        ...state,
+        id: decodedToken.user.id,
+        email: decodedToken.user.email,
+        token: action.token,
+        isVerified: decodedToken.user.verified,
         isVerifying: false,
         errorCode: null,
         errorText: '',
-      });
+      };
+    }
     case types.LOGIN_FAILED:
     case types.SIGNUP_FAILED:
-      return Object.assign({}, state, {
+      return {
         ...initialState,
-        error: action.payload.response ? action.payload.response.code : null,
-        errorText: action.payload.response ? action.payload.response.message : 'Something bad happened, Please try again later',
-      });
+        error: action.code,
+        errorText: action.message ? action.message : 'Something bad happened, Please try again later',
+      };
     case types.VERIFY_FAILED:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isVerifying: false,
-        error: action.payload.response ? action.payload.response.code : null,
-        errorText: action.payload.response ? action.payload.response.message : 'Something bad happened, Please try again later',
-      });
+        error: action.code,
+        errorText: action.message ? action.message : 'Something bad happened, Please try again later',
+      };
+    case types.LOGOUT:
+      return {
+        ...initialState,
+      };
     default:
       return state;
   }

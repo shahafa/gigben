@@ -1,21 +1,36 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Line } from 'react-chartjs-2';
 import TimelineIcon from 'react-icons/lib/md/timeline';
 import OverviewControl from './OverviewControl';
 
-const NetPay = () => {
+const chartOptions = {
+  maintainAspectRatio: false,
+  legend: {
+    display: false,
+  },
+};
+
+const NetPay = ({ data }) => {
   const chartData = {
-    labels: ['May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr'],
+    labels: data.labels,
     datasets: [{
-      data: [1012, 895, 1213, 945, 1123, 0, 1345, 765, 1078, 1172, 564, 1119],
+      data: data.data,
+      borderColor: '#3980B2',
+      backgroundColor: 'white',
+      fill: false,
     }],
   };
 
   return (
     <OverviewControl Icon={TimelineIcon} title="Net Pay">
-      <Line data={chartData} />
+      <Line data={chartData} options={chartOptions} />
     </OverviewControl>
   );
+};
+
+NetPay.propTypes = {
+  data: PropTypes.object.isRequired,
 };
 
 export default NetPay;

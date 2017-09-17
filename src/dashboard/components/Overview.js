@@ -4,7 +4,7 @@ import Income from './Income';
 import NetPay from './NetPay';
 import Deductions from './Deductions';
 import TopExpenses from './TopExpenses';
-import { incomeByPlatformData } from './mockData';
+import { incomeByPlatformData, net, deductions, expenses } from './mockData';
 
 const Wrapper = styled.div`
   display: flex;
@@ -26,22 +26,22 @@ const Cell = styled.div`
 const Overview = () => (
   <Wrapper>
     <Row>
-      <Cell span={3}>
+      <Cell span={4}>
         <Income data={incomeByPlatformData} />
       </Cell>
 
-      <Cell span={1}>
-        <NetPay />
+      <Cell span={2}>
+        <NetPay data={net} />
       </Cell>
     </Row>
 
     <Row>
-      <Cell span={3}>
-        <Deductions />
+      <Cell span={4}>
+        <Deductions data={deductions} />
       </Cell>
 
-      <Cell span={1}>
-        <TopExpenses />
+      <Cell span={2}>
+        <TopExpenses data={expenses} />
       </Cell>
     </Row>
   </Wrapper>

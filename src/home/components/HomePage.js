@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import scrollToComponent from 'react-scroll-to-component';
 import LandingSection from './LandingSection';
 import WhySection from './WhySection';
@@ -7,8 +9,16 @@ import GetEarlyAccessSection from './GetEarlyAccessSection';
 import Footer from './Footer';
 
 class HomePage extends Component {
+  static propTypes = {
+    history: PropTypes.object.isRequired,
+  }
+
   state={
     focusEarlyAccessEmailInput: false,
+  }
+
+  handleSigninClick = () => {
+    this.props.history.push('/login');
   }
 
   handleJoinUsClick = () => {
@@ -21,7 +31,10 @@ class HomePage extends Component {
 
     return (
       <div>
-        <LandingSection onJoinUsClick={this.handleJoinUsClick} />
+        <LandingSection
+          onSigninClick={this.handleSigninClick}
+          onJoinUsClick={this.handleJoinUsClick}
+        />
 
         <WhySection />
 
@@ -38,4 +51,4 @@ class HomePage extends Component {
   }
 }
 
-export default HomePage;
+export default connect()(HomePage);

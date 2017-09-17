@@ -7,6 +7,7 @@ import OverviewControl from './OverviewControl';
 const chartOptions = {
   maintainAspectRatio: false,
   legend: {
+    display: false,
     position: 'right',
   },
   scales: {

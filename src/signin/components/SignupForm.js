@@ -19,6 +19,10 @@ const SignupForm = ({
   passwordConfirmError,
   onPasswordConfirmChange,
   onPasswordConfirmBlur,
+  invitationCode,
+  invitationCodeError,
+  onInvitationCodeChange,
+  onInvitationCodeBlur,
   errorText,
   isSigningup,
   onSignupClick,
@@ -40,7 +44,7 @@ const SignupForm = ({
       </Link>
     </Container>
 
-    <Container directionColumn width="360px" margin="30px 0 45px 0">
+    <Container directionColumn width="360px" margin="30px 0 25px 0">
       <TextField
         autoFocus
         label="Email"
@@ -74,17 +78,28 @@ const SignupForm = ({
         onBlur={onPasswordConfirmBlur}
         onKeyPress={(event) => { if (event.key === 'Enter') onSignupClick(); }}
       />
+
+      <Spacer vertical="12px" />
+
+      <TextField
+        label="Invitation code"
+        value={invitationCode}
+        error={invitationCodeError}
+        onChange={event => onInvitationCodeChange(event.target.value)}
+        onBlur={onInvitationCodeBlur}
+        onKeyPress={(event) => { if (event.key === 'Enter') onSignupClick(); }}
+      />
     </Container>
 
     <Text size="16px" height="16px" weight="300" color={red[500]} align="center">
       {errorText}
     </Text>
 
-    <Spacer vertical="35px" />
+    <Spacer vertical="25px" />
 
     {isSigningup ?
       <CircularProgress size={43} />
-    :
+      :
       <Button onClick={onSignupClick}>
         Sign Up
       </Button>
@@ -108,6 +123,10 @@ SignupForm.propTypes = {
   passwordConfirmError: PropTypes.bool.isRequired,
   onPasswordConfirmChange: PropTypes.func.isRequired,
   onPasswordConfirmBlur: PropTypes.func.isRequired,
+  invitationCode: PropTypes.string.isRequired,
+  invitationCodeError: PropTypes.bool.isRequired,
+  onInvitationCodeChange: PropTypes.func.isRequired,
+  onInvitationCodeBlur: PropTypes.func.isRequired,
   errorText: PropTypes.string.isRequired,
   isSigningup: PropTypes.bool.isRequired,
   onSignupClick: PropTypes.func.isRequired,

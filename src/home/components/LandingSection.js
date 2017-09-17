@@ -4,11 +4,9 @@ import styled from 'styled-components';
 import { Logo } from 'common/components';
 import background from '../assets/background.png';
 
-const Main = styled.div`
+const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
   z-index: 0;
 
@@ -27,7 +25,27 @@ const Main = styled.div`
     @media (max-width: 667px) {
       background-position-x: -150px;
     }       
-  }
+  }  
+`;
+
+const Header = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
+  height: 75px;
+  padding: 30px 50px 0 0;
+
+  @media (max-width: 667px) {
+    visibility: hidden;
+  }  
+`;
+
+const Main = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: -75px;
 `;
 
 const H1 = styled.h1`
@@ -45,23 +63,26 @@ const H2 = styled.h2`
   text-align: center;
   color: white;
   line-height: 1.5em;
-
+  margin-bottom: 40px;
+  
   @media (max-width: 667px) {
     width: 90vw;
     font-weight: 300;    
   }    
 `;
 
-const Button = styled.div`
-  margin-top: 40px;
+const SinginButton = styled.div`
+  width: 100px;
+  height: 40px;
+  line-height: 37px;
   border-radius: 40px;
   color: white;
   border: 2px solid white;
   transition: all .2s ease-in-out;
   font-weight: 300;
-  font-size: 1.2em;  
+  font-size: 1em;  
   cursor: pointer;
-  padding: 8px 30px;
+  text-align: center;
 
   @media (max-width: 667px) {
     visibility: hidden;
@@ -73,19 +94,51 @@ const Button = styled.div`
   }
 `;
 
-const LandingSection = ({ onJoinUsClick }) => (
-  <Main>
-    <Logo size="5em" color="white" />
-    <H1>Securing your future</H1>
-    <H2>
-      Gigben is a platform for gig economy workers to manage payments, benefits, expenses
-      and taxes.
-    </H2>
-    <Button onClick={onJoinUsClick}>Join Us</Button>
-  </Main>
+const Button = styled.div`
+  width: 130px;
+  border-radius: 40px;
+  color: white;
+  border: 2px solid white;
+  transition: all .2s ease-in-out;
+  font-weight: 300;
+  font-size: 1.2em;  
+  cursor: pointer;
+  padding: 8px 30px;
+  text-align: center;
+
+  @media (max-width: 667px) {
+    visibility: hidden;
+  }
+
+  &:hover {
+    color: black;
+    background-color: white;
+  }
+`;
+
+const LandingSection = ({
+  onJoinUsClick,
+  onSigninClick,
+}) => (
+  <Wrapper>
+    <Header>
+      <SinginButton onClick={onSigninClick}>Sign In</SinginButton>
+    </Header>
+
+    <Main>
+      <Logo size="5em" color="white" />
+      <H1>Securing your future</H1>
+      <H2>
+        Gigben is a platform for gig economy workers to manage payments, benefits, expenses
+        and taxes.
+      </H2>
+      <Button onClick={onJoinUsClick}>Join Us</Button>
+    </Main>
+  </Wrapper>
 );
 
 LandingSection.propTypes = {
+  onSigninClick: PropTypes.func.isRequired,
   onJoinUsClick: PropTypes.func.isRequired,
 };
 

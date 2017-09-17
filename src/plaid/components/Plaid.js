@@ -15,7 +15,7 @@ class Plaid extends Component {
       <div style={{ padding: 30 }}>
         <PlaidLink
           publicKey="77d1e73a10adb6ec5098f5b097308b"
-          product="Auth, Transactions, Income"
+          product="auth, transactions, identity"
           env="sandbox"
           clientName="gigben"
           onSuccess={this.handleOnSuccess}

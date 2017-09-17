@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import validator from 'validator';
 import { isTokenExpired } from 'common/utils/jwtHelper';
-import { signup, clearError } from '../actions';
+import { signup, resetUserState } from '../actions';
 import SigninShell from './SigninShell';
 import SignupForm from './SignupForm';
 
@@ -26,20 +26,23 @@ class SignupPage extends Component {
     passwordError: '',
     passwordConfirm: '',
     passwordConfirmError: '',
+    invitationCode: '',
+    invitationCodeError: '',
   }
 
   componentDidMount() {
     const { dispatch } = this.props;
-    dispatch(clearError());
+    dispatch(resetUserState());
   }
 
   handleSignupClick = () => {
     const { dispatch } = this.props;
-    const { email, password, passwordConfirm } = this.state;
+    const { email, password, passwordConfirm, invitationCode } = this.state;
 
     let emailError = '';
     let passwordError = '';
     let passwordConfirmError = '';
+    let invitationCodeError = '';
 
     if (validator.isEmpty(email)) {
       emailError = 'Email field is required';
@@ -53,6 +56,8 @@ class SignupPage extends Component {
       passwordConfirmError = 'Password confirmation field is required';
     } else if (password !== passwordConfirm) {
       passwordConfirmError = 'Passwords don\'t match.';
+    } else if (invitationCode !== 'ofermoshe') {
+      invitationCodeError = 'Invalid invitation code';
     } else {
       dispatch(signup(email, passwordConfirm));
     }
@@ -61,6 +66,7 @@ class SignupPage extends Component {
       emailError,
       passwordError,
       passwordConfirmError,
+      invitationCodeError,
     });
   }
 
@@ -81,6 +87,8 @@ class SignupPage extends Component {
       passwordError,
       passwordConfirm,
       passwordConfirmError,
+      invitationCode,
+      invitationCodeError,
     } = this.state;
 
     if (isAuthenticated && !isTokenExpired(token) && !isVerified) {
@@ -103,8 +111,12 @@ class SignupPage extends Component {
           passwordConfirmError={passwordConfirmError !== ''}
           onPasswordConfirmChange={value => this.setState({ passwordConfirm: value })}
           onPasswordConfirmBlur={() => this.setState({ passwordConfirmError: '' })}
+          invitationCode={invitationCode}
+          invitationCodeError={invitationCodeError}
+          onInvitationCodeChange={value => this.setState({ invitationCode: value })}
+          onInvitationCodeBlur={() => this.setState({ invitationCodeError: '' })}
           onEnterPress={this.handleSignupClick}
-          errorText={emailError || passwordError || passwordConfirmError || serverErrorText}
+          errorText={emailError || passwordError || passwordConfirmError || invitationCodeError || serverErrorText}
           isSigningup={isSigningup}
           onSignupClick={this.handleSignupClick}
         />

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Humanize from 'humanize-plus';
+import SignOutIcon from 'react-icons/lib/fa/sign-out';
 import { Logo } from 'common/components';
 import HeaderItem from './HeaderItem';
 
@@ -12,6 +13,16 @@ const Wrapper = styled.div`
   padding: 25px 50px 0 50px;
 `;
 
+const Container = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const LogoutButton = styled.div`
+  cursor: pointer;
+`;
+
 const HeaderItemsWrapper = styled.div`
   display: flex;
   justify-content: space-around;
@@ -19,6 +30,7 @@ const HeaderItemsWrapper = styled.div`
 `;
 
 const Header = ({
+  onLogoutClick,
   bankBalance,
   creditCards,
   loans,
@@ -26,7 +38,13 @@ const Header = ({
   retiermentBalance,
 }) => (
   <Wrapper>
-    <Logo color="white" size="40px" />
+    <Container>
+      <Logo color="white" size="40px" />
+
+      <LogoutButton onClick={onLogoutClick}>
+        <SignOutIcon size={25} color="white" />
+      </LogoutButton>
+    </Container>
 
     <HeaderItemsWrapper>
       <HeaderItem label="Bank Balance" value={`$${Humanize.intComma(bankBalance)}`} />
@@ -39,6 +57,7 @@ const Header = ({
 );
 
 Header.propTypes = {
+  onLogoutClick: PropTypes.func.isRequired,
   bankBalance: PropTypes.number.isRequired,
   creditCards: PropTypes.number.isRequired,
   loans: PropTypes.number.isRequired,
