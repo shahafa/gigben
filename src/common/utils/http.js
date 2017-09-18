@@ -6,10 +6,15 @@ class HttpError extends Error {
   }
 }
 
-export const get = async (url) => {
+export const get = async (url, token) => {
   let response;
   try {
-    response = await fetch(url);
+    response = await fetch(url, {
+      method: 'GET',
+      headers: {
+        Authorization: token ? `Bearer ${token}` : undefined,
+      },
+    });
   } catch (error) {
     throw new Error();
   }
@@ -22,13 +27,14 @@ export const get = async (url) => {
   return json;
 };
 
-export const post = async (url, body) => {
+export const post = async (url, token, body) => {
   let response;
   try {
     response = await fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        Authorization: token ? `Bearer ${token}` : undefined,
       },
       body: JSON.stringify(body),
     });

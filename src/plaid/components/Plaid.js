@@ -1,27 +1,61 @@
 import React, { Component } from 'react';
-import PlaidLink from 'react-plaid-link';
+import PlaidLink from './PlaidLink';
 
 class Plaid extends Component {
   state = {
-    publicKey: '',
+    plaidLinkSandboxPublicKey: '',
+    plaidLinkSandboxOpen: false,
+    plaidLinkDevelopmentPublicKey: '',
+    plaidLinkDevelopmentOpen: false,
   }
 
-  handleOnSuccess = publicKey => this.setState({ publicKey })
-
   render() {
-    const { publicKey } = this.state;
+    const {
+      plaidLinkSandboxPublicKey,
+      plaidLinkSandboxOpen,
+      plaidLinkDevelopmentPublicKey,
+      plaidLinkDevelopmentOpen,
+    } = this.state;
 
     return (
       <div style={{ padding: 30 }}>
+        <h1>Sandbox</h1>
+
+        <button onClick={() => this.setState({ plaidLinkSandboxOpen: true })}>
+          Open Link Sandbox
+        </button>
+
         <PlaidLink
-          publicKey="77d1e73a10adb6ec5098f5b097308b"
-          product="auth, transactions, identity"
           env="sandbox"
-          clientName="gigben"
-          onSuccess={this.handleOnSuccess}
+          open={plaidLinkSandboxOpen}
+          onLoginSuccess={publicKey => this.setState({
+            plaidLinkSandboxOpen: false,
+            plaidLinkSandboxPublicKey: publicKey,
+          })}
+          onExit={() => this.setState({ plaidLinkSandboxOpen: false })}
         />
 
-        <div style={{ marginTop: 30 }}>{`Public Key: ${publicKey}`}</div>
+        <div style={{ marginTop: 30 }}>{`Public Key: ${plaidLinkSandboxPublicKey}`}</div>
+
+        <hr />
+
+        <h1>Development</h1>
+
+        <button onClick={() => this.setState({ plaidLinkDevelopmentOpen: true })}>
+          Open Link Development
+        </button>
+
+        <PlaidLink
+          env="development"
+          open={plaidLinkDevelopmentOpen}
+          onLoginSuccess={publicKey => this.setState({
+            plaidLinkDevelopmentOpen: false,
+            plaidLinkDevelopmentPublicKey: publicKey,
+          })}
+          onExit={() => this.setState({ plaidLinkDevelopmentOpen: false })}
+        />
+
+        <div style={{ marginTop: 30 }}>{`Public Key: ${plaidLinkDevelopmentPublicKey}`}</div>
       </div>
     );
   }

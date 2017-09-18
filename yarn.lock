@@ -3147,7 +3147,7 @@ hoek@2.x.x:
   version "2.16.3"
   resolved "https://registry.yarnpkg.com/hoek/-/hoek-2.16.3.tgz#20bb7403d3cea398e91dc4710a8ff1b8274a25ed"
 
-hoist-non-react-statics@^1.0.0, hoist-non-react-statics@^1.2.0:
+hoist-non-react-statics@^1.0.0, hoist-non-react-statics@^1.0.3, hoist-non-react-statics@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-1.2.0.tgz#aa448cf0986d55cc40773b17174b7dd066cb7cfb"
 
@@ -5501,6 +5501,12 @@ rc@^1.0.1, rc@^1.1.6, rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-async-script-loader@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/react-async-script-loader/-/react-async-script-loader-0.3.0.tgz#c742b3ca25e08ba61ab7eb64371f814027692b86"
+  dependencies:
+    hoist-non-react-statics "^1.0.3"
+
 react-base16-styling@^0.5.1:
   version "0.5.3"
   resolved "https://registry.yarnpkg.com/react-base16-styling/-/react-base16-styling-0.5.3.tgz#3858f24e9c4dd8cbd3f702f3f74d581ca2917269"
@@ -5634,12 +5640,6 @@ react-jss@^7.1.0:
     prop-types "^15.5.8"
     theming "^1.1.0"
 
-react-plaid-link@^0.1.9:
-  version "0.1.9"
-  resolved "https://registry.yarnpkg.com/react-plaid-link/-/react-plaid-link-0.1.9.tgz#afc7a3dd913da1aa5aafce48c1124382b729c304"
-  dependencies:
-    react-script-loader "0.0.1"
-
 react-popper@^0.7.2:
   version "0.7.2"
   resolved "https://registry.yarnpkg.com/react-popper/-/react-popper-0.7.2.tgz#5daa821eadc6f2ca802176d7be271d0f03f25f58"
@@ -5693,10 +5693,6 @@ react-router@^4.1.1, react-router@^4.2.0:
     path-to-regexp "^1.7.0"
     prop-types "^15.5.4"
     warning "^3.0.0"
-
-react-script-loader@0.0.1:
-  version "0.0.1"
-  resolved "https://registry.yarnpkg.com/react-script-loader/-/react-script-loader-0.0.1.tgz#9e33c88f26ad7a5cd418553a8d2188b9056dd385"
 
 react-scripts@^1.0.10:
   version "1.0.13"

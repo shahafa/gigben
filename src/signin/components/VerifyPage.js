@@ -63,7 +63,7 @@ class VerifyPage extends Component {
     } = this.state;
 
     if (isAuthenticated && !isTokenExpired(token) && isVerified) {
-      return <Redirect to={{ pathname: '/dashboard' }} />;
+      return <Redirect to={{ pathname: '/bank-login' }} />;
     } else if (!isAuthenticated) {
       return <Redirect to={{ pathname: '/login' }} />;
     }

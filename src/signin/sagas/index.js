@@ -13,6 +13,7 @@ import {
   verifySuccess,
   verifyFailed,
   LOGOUT,
+  SET_PLAID_TOKEN,
 } from '../actions';
 
 function* login() {
@@ -20,7 +21,7 @@ function* login() {
     const { email, password } = yield take(LOGIN);
 
     try {
-      const response = yield post('/v1/login', {
+      const response = yield post('/v1/login', null, {
         email,
         password: Base64.encode(password),
       });
@@ -37,7 +38,7 @@ function* signup() {
     const { email, password } = yield take(SIGNUP);
 
     try {
-      const response = yield post('/v1/signup', {
+      const response = yield post('/v1/signup', null, {
         email,
         password: Base64.encode(password),
       });
@@ -54,7 +55,7 @@ function* verify() {
     const { id, code } = yield take(VERIFY);
 
     try {
-      const response = yield post('/v1/verify', {
+      const response = yield post('/v1/verify', null, {
         id,
         code,
       });
@@ -69,7 +70,14 @@ function* verify() {
 function* watchLogout() {
   while (true) {
     yield take(LOGOUT);
-    yield put(push('/'));
+    yield put(push('/login'));
+  }
+}
+
+function* watchSetPlaidToken() {
+  while (true) {
+    yield take(SET_PLAID_TOKEN);
+    yield put(push('/dashboard'));
   }
 }
 
@@ -79,5 +87,6 @@ export default function* sagas() {
     fork(signup),
     fork(verify),
     fork(watchLogout),
+    fork(watchSetPlaidToken),
   ]);
 }

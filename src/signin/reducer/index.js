@@ -12,14 +12,11 @@ const initialState = {
   isVerifying: false,
   errorCode: null,
   errorText: '',
+  plaidToken: null,
 };
 
 const auth = (state = initialState, action) => {
   switch (action.type) {
-    case types.RESET_USER_STATE:
-      return {
-        ...initialState,
-      };
     case types.SIGNIN_CLEAR_ERROR:
       return {
         ...state,
@@ -96,9 +93,15 @@ const auth = (state = initialState, action) => {
         error: action.code,
         errorText: action.message ? action.message : 'Something bad happened, Please try again later',
       };
+    case types.RESET_USER_STATE:
     case types.LOGOUT:
       return {
         ...initialState,
+      };
+    case types.SET_PLAID_TOKEN:
+      return {
+        ...state,
+        plaidToken: action.token,
       };
     default:
       return state;

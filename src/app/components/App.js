@@ -7,10 +7,10 @@ import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import { lightBlue } from 'material-ui/colors';
 import { DevTools } from 'common/components';
 import { HomePage } from 'home';
-import { LoginPage, SignupPage, VerifyPage } from 'signin';
+import { LoginPage, SignupPage, VerifyPage, BankLogin } from 'signin';
 import { OnboardingPage } from 'onboarding';
 import { Dashboard } from 'dashboard';
-import { Plaid, PlaidDevelopment } from 'plaid';
+import { Plaid } from 'plaid';
 import { logRoutesToGoogleAnalytics } from './googleAnalyticsLogger';
 import PrivateRoute from './PrivateRoute';
 import './globalStyles';
@@ -33,11 +33,11 @@ const App = () => (
             <Route path="/login" component={LoginPage} />
             <Route path="/signup" component={SignupPage} />
             <Route path="/verify" component={VerifyPage} />
-            <Route path="/dashboard" component={Dashboard} />
+            <PrivateRoute path="/bank-login" component={BankLogin} />
+            <PrivateRoute path="/dashboard" component={Dashboard} />
             <PrivateRoute path="/onboarding" component={OnboardingPage} />
 
             <Route path="/plaid" component={Plaid} />
-            <Route path="/plaid-development" component={PlaidDevelopment} />
           </Switch>
 
           {process.env.NODE_ENV === 'development' && <DevTools />}

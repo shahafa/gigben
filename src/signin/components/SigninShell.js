@@ -16,7 +16,11 @@ SignInShell.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.func,
-  ]).isRequired,
+  ]),
+};
+
+SignInShell.defaultProps = {
+  children: null,
 };
 
 export default SignInShell;

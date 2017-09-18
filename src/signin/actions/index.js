@@ -72,3 +72,9 @@ export const LOGOUT = 'LOGOUT';
 export const logout = () => ({
   type: LOGOUT,
 });
+
+export const SET_PLAID_TOKEN = 'SET_PLAID_TOKEN';
+export const setPlaidToken = token => ({
+  type: SET_PLAID_TOKEN,
+  token,
+});
