@@ -11,7 +11,7 @@ class BankLogin extends Component {
       const handler = Plaid.create({ // eslint-disable-line
         apiVersion: 'v2',
         clientName: 'gigben',
-        env: 'development',
+        env: 'sandbox',
         key: '77d1e73a10adb6ec5098f5b097308b',
         product: ['auth', 'transactions', 'identity'],
         onSuccess: this.handlePlaidLinkLoginSuccess,

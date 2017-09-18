@@ -1,3 +1,5 @@
+import store from 'common/store';
+
 class HttpError extends Error {
   constructor(message, code, errors) {
     super(message);
@@ -6,13 +8,13 @@ class HttpError extends Error {
   }
 }
 
-export const get = async (url, token) => {
+export const get = async (url) => {
   let response;
   try {
     response = await fetch(url, {
       method: 'GET',
       headers: {
-        Authorization: token ? `Bearer ${token}` : undefined,
+        Authorization: store.getState().signin.token ? `Bearer ${store.getState().signin.token}` : undefined,
       },
     });
   } catch (error) {
@@ -27,14 +29,14 @@ export const get = async (url, token) => {
   return json;
 };
 
-export const post = async (url, token, body) => {
+export const post = async (url, body) => {
   let response;
   try {
     response = await fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: token ? `Bearer ${token}` : undefined,
+        Authorization: store.getState().signin.token ? `Bearer ${store.getState().signin.token}` : undefined,
       },
       body: JSON.stringify(body),
     });
