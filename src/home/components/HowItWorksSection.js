@@ -53,7 +53,7 @@ const HowItWorksSection = () => (
       <Item>
         <ItemImage src={analytics} />
         <ItemText>
-          Get comprehensive and easy-to-understand finiancial visibility
+          Get comprehensive and easy-to-understand financial visibility
         </ItemText>
       </Item>
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import SimpleLineIcon from 'react-simple-line-icons';
 
 const Wrapper = styled.div`
   display: flex;
@@ -26,13 +27,13 @@ const Content = styled.div`
 `;
 
 const OverviewControl = ({
-  Icon,
+  icon,
   title,
   children,
 }) => (
   <Wrapper>
     <Title>
-      <Icon />
+      <SimpleLineIcon name={icon} />
       <TitleText>
         {title}
       </TitleText>
@@ -45,7 +46,7 @@ const OverviewControl = ({
 );
 
 OverviewControl.propTypes = {
-  Icon: PropTypes.func.isRequired,
+  icon: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   children: PropTypes.oneOfType([
     PropTypes.node,

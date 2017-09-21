@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Line } from 'react-chartjs-2';
-import TimelineIcon from 'react-icons/lib/md/timeline';
 import OverviewControl from './OverviewControl';
 
 const chartOptions = {
@@ -23,7 +22,7 @@ const NetPay = ({ data }) => {
   };
 
   return (
-    <OverviewControl Icon={TimelineIcon} title="Net Pay">
+    <OverviewControl icon="graph" title="Net Pay">
       <Line data={chartData} options={chartOptions} />
     </OverviewControl>
   );

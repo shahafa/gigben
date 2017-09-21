@@ -4365,8 +4365,8 @@ material-ui-icons@^1.0.0-alpha.19:
     recompose "^0.24.0"
 
 material-ui@^1.0.0-beta.9:
-  version "1.0.0-beta.10"
-  resolved "https://registry.yarnpkg.com/material-ui/-/material-ui-1.0.0-beta.10.tgz#8aaa5a8cf9cee366f42c31c7fb6d8a2d37039404"
+  version "1.0.0-beta.11"
+  resolved "https://registry.yarnpkg.com/material-ui/-/material-ui-1.0.0-beta.11.tgz#f05c475e0e9a1818f1414c5878e4da110b4e9ef4"
   dependencies:
     babel-runtime "^6.26.0"
     brcast "^3.0.1"
@@ -5614,8 +5614,8 @@ react-icons@^2.2.5:
     react-icon-base "2.0.7"
 
 react-images@^0.5.5:
-  version "0.5.5"
-  resolved "https://registry.yarnpkg.com/react-images/-/react-images-0.5.5.tgz#c1f175c6f6f297b061efa78d4d0dc0f2cc4b58bf"
+  version "0.5.6"
+  resolved "https://registry.yarnpkg.com/react-images/-/react-images-0.5.6.tgz#1296740e2a0f32fb2b0d5285b078a0b05126a9dc"
   dependencies:
     aphrodite "^0.5.0"
     prop-types "^15.5.8"
@@ -5756,6 +5756,15 @@ react-scrolllock@^1.0.5:
   dependencies:
     create-react-class "^15.5.2"
     prop-types "^15.5.10"
+
+react-simple-line-icons@^1.0.8:
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/react-simple-line-icons/-/react-simple-line-icons-1.0.8.tgz#be5b2377a9c8ce45fe6c4bac17715bcb226b74f5"
+  dependencies:
+    prop-types "^15.5.10"
+    react "^15.6.1"
+    react-dom "^15.6.1"
+    simple-line-icons "^2.4.1"
 
 react-transition-group@^1.1.3:
   version "1.2.0"
@@ -6325,6 +6334,10 @@ shellwords@^0.1.0:
 signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
+
+simple-line-icons@^2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/simple-line-icons/-/simple-line-icons-2.4.1.tgz#b75bc5a0d87e530928c2ccda5735274bb256f234"
 
 slash@^1.0.0:
   version "1.0.0"

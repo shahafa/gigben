@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Bar } from 'react-chartjs-2';
-import LightBlubIcon from 'react-icons/lib/go/light-bulb';
 import OverviewControl from './OverviewControl';
 
 const chartOptions = {
@@ -30,7 +29,7 @@ const Deductions = ({ data }) => {
   };
 
   return (
-    <OverviewControl Icon={LightBlubIcon} title="Deductions">
+    <OverviewControl icon="bulb" title="Deductions">
       <Bar data={chartData} options={chartOptions} />
     </OverviewControl>
   );

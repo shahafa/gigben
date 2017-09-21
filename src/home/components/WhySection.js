@@ -54,8 +54,8 @@ class WhySection extends Component {
           We understand that unlike a regular employee as a gig economy worker, you need to take
           care of your financial future and it takes time and requires specialties.
           <br /><br />
-          This is why we built Gigben, with Gigben you can manage payaments from diffrenet
-          platforms, benefits, expenses and tax reports in one place and in easy way like a pro!
+          This is why we built Gigben, with Gigben you can manage payments from different platforms,
+          benefits, expenses and tax reports in one place and in an easy way like a pro!
         </Text>
 
         <ScreenshotContainer>

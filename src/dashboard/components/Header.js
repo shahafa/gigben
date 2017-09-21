@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Humanize from 'humanize-plus';
-import SignOutIcon from 'react-icons/lib/fa/sign-out';
+import SimpleLineIcon from 'react-simple-line-icons';
 import { Logo } from 'common/components';
 import HeaderItem from './HeaderItem';
 
@@ -42,7 +42,7 @@ const Header = ({
       <Logo color="white" size="40px" />
 
       <LogoutButton onClick={onLogoutClick}>
-        <SignOutIcon size={25} color="white" />
+        <SimpleLineIcon name="logout" color="white" />
       </LogoutButton>
     </Container>
 

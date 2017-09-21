@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Bar } from 'react-chartjs-2';
-import CubesIcon from 'react-icons/lib/fa/cubes';
 import { post } from 'common/utils/http';
 import OverviewControl from './OverviewControl';
 
@@ -32,11 +31,11 @@ class Income extends Component {
   }
 
   componentDidMount() {
-    const { plaidToken } = this.props;
+    // const { plaidToken } = this.props;
 
-    post('/v1/dashboard/income', {
-      plaidPublicToken: plaidToken,
-    }).then(data => this.setState({ data }));
+    // post('/v1/dashboard/income', {
+    //  plaidPublicToken: plaidToken,
+    // }).then(data => this.setState({ data }));
   }
 
   render() {
@@ -52,7 +51,7 @@ class Income extends Component {
     } : undefined;
 
     return (
-      <OverviewControl Icon={CubesIcon} title="Income by Platform">
+      <OverviewControl icon="layers" title="Income by Platform">
         <Bar data={chartData} options={chartOptions} />
       </OverviewControl>
     );

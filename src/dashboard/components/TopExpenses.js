@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Doughnut } from 'react-chartjs-2';
-import EyeIcon from 'react-icons/lib/fa/eye';
 import OverviewControl from './OverviewControl';
 
 const chartOptions = {
@@ -22,7 +21,7 @@ const TopExpenses = ({ data }) => {
   };
 
   return (
-    <OverviewControl Icon={EyeIcon} title="Top Expenses by Category">
+    <OverviewControl icon="eye" title="Top Expenses by Category">
       <Doughnut data={chartData} options={chartOptions} />
     </OverviewControl>
   );
