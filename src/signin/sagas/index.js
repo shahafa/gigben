@@ -70,7 +70,7 @@ function* verify() {
 function* watchLogout() {
   while (true) {
     yield take(LOGOUT);
-    yield put(push('/login'));
+    yield put(push('/'));
   }
 }
 
