@@ -62,7 +62,11 @@ Header.propTypes = {
   creditCards: PropTypes.number.isRequired,
   loans: PropTypes.number.isRequired,
   investments: PropTypes.number.isRequired,
-  retiermentBalance: PropTypes.number.isRequired,
+  retiermentBalance: PropTypes.number,
+};
+
+Header.defaultProps = {
+  retiermentBalance: 0,
 };
 
 export default Header;

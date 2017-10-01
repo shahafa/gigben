@@ -17,18 +17,21 @@ class LoginPage extends Component {
     isAuthenticating: PropTypes.bool.isRequired,
     isVerified: PropTypes.bool.isRequired,
     serverErrorText: PropTypes.string.isRequired,
+    demoMode: PropTypes.bool.isRequired,
   }
 
-  state = {
-    email: '',
-    emailError: '',
-    password: '',
-    passwordError: '',
-  }
+  constructor(props) {
+    super(props);
 
-  componentDidMount() {
     const { dispatch } = this.props;
     dispatch(resetUserState());
+
+    this.state = {
+      email: '',
+      emailError: '',
+      password: '',
+      passwordError: '',
+    };
   }
 
   handleLoginClick = () => {
@@ -64,6 +67,7 @@ class LoginPage extends Component {
       isAuthenticating,
       isVerified,
       serverErrorText,
+      demoMode,
     } = this.props;
 
     const {
@@ -74,7 +78,7 @@ class LoginPage extends Component {
     } = this.state;
 
     if (isAuthenticated && !isTokenExpired(token)) {
-      return <Redirect to={{ pathname: isVerified ? '/bank-login' : '/verify' }} />;
+      return <Redirect to={{ pathname: isVerified ? `/bank-login${demoMode ? '/demo' : ''}` : '/verify' }} />;
     }
 
     return (
@@ -105,6 +109,7 @@ const mapStateToProps = state => ({
   isAuthenticating: state.signin.isAuthenticating,
   isVerified: state.signin.isVerified,
   serverErrorText: state.signin.errorText,
+  demoMode: state.router.location.pathname.toLowerCase().endsWith('/demo'),
 });
 
 export default connect(mapStateToProps)(LoginPage);

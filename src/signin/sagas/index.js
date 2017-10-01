@@ -1,4 +1,4 @@
-import { all, fork, take, put, select } from 'redux-saga/effects';
+import { all, fork, take, put } from 'redux-saga/effects';
 import { post } from 'common/utils/http';
 import { Base64 } from 'js-base64/base64';
 import { push } from 'react-router-redux';
@@ -77,12 +77,6 @@ function* watchLogout() {
 function* watchSetPlaidToken() {
   while (true) {
     yield take(SET_PLAID_TOKEN);
-
-    const plaidPublicToken = yield select(state => state.signin.plaidToken)
-    yield post('/v1/plaidLogin', {
-      plaidPublicToken,
-    });
-
     yield put(push('/dashboard'));
   }
 }

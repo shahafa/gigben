@@ -1,10 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Income from './Income';
 import NetPay from './NetPay';
 import Deductions from './Deductions';
 import TopExpenses from './TopExpenses';
-import { incomeByPlatformData, net, deductions, expenses } from './mockData';
 
 const Wrapper = styled.div`
   display: flex;
@@ -23,28 +23,32 @@ const Cell = styled.div`
   ${props => props.span && `flex: ${props.span}`};  
 `;
 
-const Overview = () => (
+const Overview = ({ data }) => (
   <Wrapper>
     <Row>
       <Cell span={4}>
-        <Income data={incomeByPlatformData} />
+        <Income data={data.income} />
       </Cell>
 
       <Cell span={2}>
-        <NetPay data={net} />
+        <NetPay data={data.netpay} />
       </Cell>
     </Row>
 
     <Row>
       <Cell span={4}>
-        <Deductions data={deductions} />
+        <Deductions data={data.deductions} />
       </Cell>
 
       <Cell span={2}>
-        <TopExpenses data={expenses} />
+        <TopExpenses data={data.expenses} />
       </Cell>
     </Row>
   </Wrapper>
 );
+
+Overview.propTypes = {
+  data: PropTypes.object.isRequired,
+};
 
 export default Overview;

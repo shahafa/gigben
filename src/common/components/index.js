@@ -1,6 +1,5 @@
 export { default as Button } from './Button';
 export { default as Container } from './Container';
-export { default as DevTools } from './DevTools';
 export { default as HoverableLink } from './HoverableLink';
 export { default as Input } from './Input';
 export { default as Link } from './Link';

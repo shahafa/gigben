@@ -1,8 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import { Bar } from 'react-chartjs-2';
-import { post } from 'common/utils/http';
 import OverviewControl from './OverviewControl';
 
 const chartOptions = {
@@ -20,46 +18,26 @@ const chartOptions = {
   },
 };
 
-class Income extends Component {
-  static propTypes = {
-    data: PropTypes.object.isRequired,
-    plaidToken: PropTypes.string.isRequired,
-  }
+const Income = ({ data }) => {
+  const chartData = {
+    labels: data.labels,
+    datasets: data.platforms.map(platform => ({
+      label: platform.name,
+      backgroundColor: platform.color,
+      data: platform.data,
+    })),
+  };
 
-  state = {
-    data: null,
-  }
+  return (
+    <OverviewControl icon="layers" title="Income by Platform">
+      <Bar data={chartData} options={chartOptions} />
+    </OverviewControl>
+  );
+};
 
-  componentDidMount() {
-    // const { plaidToken } = this.props;
+Income.propTypes = {
+  data: PropTypes.object.isRequired,
+};
 
-    // post('/v1/dashboard/income', {
-    //  plaidPublicToken: plaidToken,
-    // }).then(data => this.setState({ data }));
-  }
+export default Income;
 
-  render() {
-    const { data } = this.props;
-
-    const chartData = data ? {
-      labels: data.labels,
-      datasets: data.platforms.map(platform => ({
-        label: platform.name,
-        backgroundColor: platform.color,
-        data: platform.data,
-      })),
-    } : undefined;
-
-    return (
-      <OverviewControl icon="layers" title="Income by Platform">
-        <Bar data={chartData} options={chartOptions} />
-      </OverviewControl>
-    );
-  }
-}
-
-const mapStateToProps = state => ({
-  plaidToken: state.signin.plaidToken,
-});
-
-export default connect(mapStateToProps)(Income);
