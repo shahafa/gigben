@@ -46,7 +46,7 @@ const HowItWorksSection = () => (
       <Item>
         <ItemImage src={home} />
         <ItemText>
-          Find and enroll benefits including retirement and health insurance
+          Find and enroll in benefits including retirement and health insurance
         </ItemText>
       </Item>
 
@@ -60,14 +60,14 @@ const HowItWorksSection = () => (
       <Item>
         <ItemImage src={idea} />
         <ItemText>
-          Get personalized actionable insights to improve your financial future
+          Get personalized, actionable insights to improve your financial future
         </ItemText>
       </Item>
 
       <Item>
         <ItemImage src={tax} />
         <ItemText>
-          Approve automatic tax withholding
+          Set up automatic tax withholding
         </ItemText>
       </Item>
     </Content>

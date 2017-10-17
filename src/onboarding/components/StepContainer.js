@@ -27,7 +27,7 @@ const StepContainer = ({
 
       <Container alignItemsCenter justifyContentSpaceBetween width={hideBack ? '110px' : '200px'}>
         {!hideBack &&
-          <Link weight="300" onClick={onBackClick}>{'< Back'}</Link>
+          <Link weight="300" onClick={onBackClick}>&lt; Back</Link>
         }
 
         <Button width="110px" onClick={onNextClick}>

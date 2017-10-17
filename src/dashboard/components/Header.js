@@ -35,7 +35,7 @@ const Header = ({
   creditCards,
   loans,
   investments,
-  retiermentBalance,
+  // retiermentBalance,
 }) => (
   <Wrapper>
     <Container>
@@ -47,11 +47,13 @@ const Header = ({
     </Container>
 
     <HeaderItemsWrapper>
-      <HeaderItem label="Bank Balance" value={`$${Humanize.intComma(bankBalance)}`} />
+      <HeaderItem label="Total Balance" value={`$${Humanize.intComma(bankBalance)}`} />
       <HeaderItem label="Credit Cards" value={`$${Humanize.intComma(creditCards)}`} />
       <HeaderItem label="Loans" value={`$${Humanize.intComma(loans)}`} />
-      <HeaderItem label="Investments" value={`$${Humanize.intComma(investments)}`} />
-      <HeaderItem label="Retierment Balance" value={`$${Humanize.intComma(retiermentBalance)}`} />
+      <HeaderItem label="Savings" value={`$${Humanize.intComma(investments)}`} />
+      {/*
+        <HeaderItem label="Retierment Balance" value={`$${Humanize.intComma(retiermentBalance)}`} />
+      */}
     </HeaderItemsWrapper>
   </Wrapper>
 );
@@ -62,11 +64,11 @@ Header.propTypes = {
   creditCards: PropTypes.number.isRequired,
   loans: PropTypes.number.isRequired,
   investments: PropTypes.number.isRequired,
-  retiermentBalance: PropTypes.number,
+  // retiermentBalance: PropTypes.number,
 };
 
 Header.defaultProps = {
-  retiermentBalance: 0,
+  // retiermentBalance: 0,
 };
 
 export default Header;

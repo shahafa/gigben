@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Highlights from './Highlights';
 import Income from './Income';
 import NetPay from './NetPay';
 import Deductions from './Deductions';
@@ -25,6 +26,12 @@ const Cell = styled.div`
 
 const Overview = ({ data }) => (
   <Wrapper>
+    <Row>
+      <Cell span={6}>
+        <Highlights />
+      </Cell>
+    </Row>
+
     <Row>
       <Cell span={4}>
         <Income data={data.income} />

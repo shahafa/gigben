@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Humanize from 'humanize-plus';
 import { Doughnut } from 'react-chartjs-2';
 import OverviewControl from './OverviewControl';
 
@@ -8,6 +9,11 @@ const chartOptions = {
   legend: {
     display: false,
     position: 'right',
+  },
+  tooltips: {
+    callbacks: {
+      label: (tooltipItem, data) => `${data.labels[tooltipItem.index]}: ${Humanize.intComma(data.datasets[0].data[tooltipItem.index])}$`,
+    },
   },
 };
 

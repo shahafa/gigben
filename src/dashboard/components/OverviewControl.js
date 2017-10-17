@@ -23,13 +23,14 @@ const TitleText = styled.div`
 
 
 const Content = styled.div`
-  height: 220px;
+  ${props => `height: ${props.height}`};
 `;
 
 const OverviewControl = ({
   icon,
   title,
   children,
+  height,
 }) => (
   <Wrapper>
     <Title>
@@ -39,7 +40,7 @@ const OverviewControl = ({
       </TitleText>
     </Title>
 
-    <Content>
+    <Content height={height}>
       {children}
     </Content>
   </Wrapper>
@@ -52,6 +53,11 @@ OverviewControl.propTypes = {
     PropTypes.node,
     PropTypes.func,
   ]).isRequired,
+  height: PropTypes.string,
+};
+
+OverviewControl.defaultProps = {
+  height: '160px',
 };
 
 export default OverviewControl;

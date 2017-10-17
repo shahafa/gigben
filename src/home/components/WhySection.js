@@ -51,11 +51,12 @@ class WhySection extends Component {
     return (
       <Section title="Why Gigben">
         <Text>
-          We understand that unlike a regular employee as a gig economy worker, you need to take
-          care of your financial future and it takes time and requires specialties.
+          As a freelancer, you have more freedom and control over your schedule. But we understand
+          that you also have more complications: handling your finances and staying on top of
+          paperwork requires time and specialized knowledge.
           <br /><br />
-          This is why we built Gigben, with Gigben you can manage payments from different platforms,
-          benefits, expenses and tax reports in one place and in an easy way like a pro!
+          That&apos;s why we built Gigben. With Gigben, you can easily manage payments, benefits,
+          expenses and tax reports across platforms all in one place. Like a pro.
         </Text>
 
         <ScreenshotContainer>
